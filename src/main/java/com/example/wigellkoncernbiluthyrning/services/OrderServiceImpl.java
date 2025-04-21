@@ -5,6 +5,7 @@ import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 // Marc
@@ -33,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> orders() {
-        return orderRepository.findAll();
+    public List<Order> orders(LocalDate currentDate) {
+        return orderRepository.findOrderByReturnDateBefore(currentDate);
     }
 }
