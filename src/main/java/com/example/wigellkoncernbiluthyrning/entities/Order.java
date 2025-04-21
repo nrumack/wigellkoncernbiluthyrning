@@ -1,6 +1,9 @@
 package com.example.wigellkoncernbiluthyrning.entities;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 // Marc
 @Entity
@@ -11,11 +14,16 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(length = 10)
-    private String date;
+    private LocalDate orderDate;
 
     @Column(length = 10)
     private int totalCost;
+
+    /*@ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;*/
 
     public Long getId() {
         return id;
@@ -25,12 +33,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getDate() {
-        return date;
+    public LocalDate getOrderDate() {
+        return orderDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setOrderDate(LocalDate date) {
+        this.orderDate = date;
     }
 
     public int getTotalCost() {
