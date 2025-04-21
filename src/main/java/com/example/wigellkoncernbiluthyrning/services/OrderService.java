@@ -2,6 +2,7 @@ package com.example.wigellkoncernbiluthyrning.services;
 
 import com.example.wigellkoncernbiluthyrning.entities.Order;
 
+import java.time.LocalDate;
 import java.util.List;
 
 // Marc
@@ -13,5 +14,5 @@ public interface OrderService {
 
     List<Order> activeorders();
 
-    List<Order> orders();
+    List<Order> orders(LocalDate currentDate);
 }

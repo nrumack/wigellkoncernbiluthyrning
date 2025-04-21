@@ -15,15 +15,33 @@ public class Order {
     private Long id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateToday = LocalDate.now();
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(length = 10)
-    private LocalDate orderDate;
+    private LocalDate orderPlaced;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(length = 10)
+    private LocalDate startDate;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(length = 10)
+    private LocalDate returnDate;
 
     @Column(length = 10)
     private int totalCost;
 
-    /*@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer;*/
+    private Customer customer;
+
+    public Order() {
+    }
+
+    public LocalDate getDateToday() {
+        return dateToday;
+    }
 
     public Long getId() {
         return id;
@@ -33,12 +51,28 @@ public class Order {
         this.id = id;
     }
 
-    public LocalDate getOrderDate() {
-        return orderDate;
+    public LocalDate getOrderPlaced() {
+        return orderPlaced;
     }
 
-    public void setOrderDate(LocalDate date) {
-        this.orderDate = date;
+    public void setOrderPlaced(LocalDate date) {
+        this.orderPlaced = date;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
     }
 
     public int getTotalCost() {
@@ -47,5 +81,13 @@ public class Order {
 
     public void setTotalCost(int totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
