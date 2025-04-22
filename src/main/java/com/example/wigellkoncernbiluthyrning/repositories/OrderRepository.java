@@ -10,5 +10,8 @@ import java.util.List;
 // Marc
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
+
     List<Order> findOrderByReturnDateBefore(LocalDate currentDate);
+
+    List<Order> findOrderByReturnDateAfter(LocalDate currentDate);
 }

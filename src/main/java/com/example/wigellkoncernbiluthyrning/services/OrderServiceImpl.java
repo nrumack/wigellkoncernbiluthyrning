@@ -29,8 +29,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> activeorders() {
-        return orderRepository.findAll();
+    public List<Order> activeorders(LocalDate currentDate) {
+        return orderRepository.findOrderByReturnDateAfter(currentDate);
     }
 
     @Override
