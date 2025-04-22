@@ -15,9 +15,6 @@ public class Order {
     private Long id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate dateToday = LocalDate.now();
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(length = 10)
     private LocalDate orderPlaced;
 
@@ -37,10 +34,6 @@ public class Order {
     private Customer customer;
 
     public Order() {
-    }
-
-    public LocalDate getDateToday() {
-        return dateToday;
     }
 
     public Long getId() {

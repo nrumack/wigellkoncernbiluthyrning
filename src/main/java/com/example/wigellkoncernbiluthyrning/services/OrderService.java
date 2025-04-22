@@ -12,7 +12,11 @@ public interface OrderService {
 
     Order cancelOrder(Order order);
 
-    List<Order> activeorders(LocalDate currentDate);
+    List<Order> activeOrders(LocalDate currentDate);
 
     List<Order> orders(LocalDate currentDate);
+
+    void deleteById(Long id);
+
+    void deleteOrdersBeforeGivenDate(LocalDate givenDate);
 }
