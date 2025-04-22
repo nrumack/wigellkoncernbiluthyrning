@@ -38,7 +38,7 @@ public class OrderController {
     @GetMapping("/activeorders")
     @ResponseBody
     public List<Order> activeOrders() {
-        return orderServiceImpl.activeorders(LocalDate.now());
+        return orderServiceImpl.activeOrders(LocalDate.now());
     }
 
     @GetMapping("/orders")
