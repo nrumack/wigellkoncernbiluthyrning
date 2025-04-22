@@ -3,7 +3,7 @@ package com.example.wigellkoncernbiluthyrning.services;
 import com.example.wigellkoncernbiluthyrning.entities.Car;
 import java.util.List;
 
-//Anna
+//Anna, SCRUM-8
 
 public interface CarService {
     List<Car> getAllCars();
