@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 // Marc
@@ -37,12 +38,12 @@ public class OrderController {
     @GetMapping("/activeorders")
     @ResponseBody
     public List<Order> activeOrders() {
-        return orderServiceImpl.activeorders();
+        return orderServiceImpl.activeOrders(LocalDate.now());
     }
 
     @GetMapping("/orders")
     @ResponseBody
     public List<Order> orders() {
-        return orderServiceImpl.orders();
+        return orderServiceImpl.orders(LocalDate.now());
     }
 }

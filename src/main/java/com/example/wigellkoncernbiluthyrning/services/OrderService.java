@@ -2,6 +2,7 @@ package com.example.wigellkoncernbiluthyrning.services;
 
 import com.example.wigellkoncernbiluthyrning.entities.Order;
 
+import java.time.LocalDate;
 import java.util.List;
 
 // Marc
@@ -11,7 +12,11 @@ public interface OrderService {
 
     Order cancelOrder(Order order);
 
-    List<Order> activeorders();
+    List<Order> activeOrders(LocalDate currentDate);
 
-    List<Order> orders();
+    List<Order> orders(LocalDate currentDate);
+
+    void deleteById(Long id);
+
+    void deleteOrdersBeforeGivenDate(LocalDate givenDate);
 }

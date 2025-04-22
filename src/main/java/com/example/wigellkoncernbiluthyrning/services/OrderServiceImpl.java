@@ -4,7 +4,9 @@ import com.example.wigellkoncernbiluthyrning.entities.Order;
 import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 // Marc
@@ -28,12 +30,23 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> activeorders() {
-        return orderRepository.findAll();
+    public List<Order> activeOrders(LocalDate currentDate) {
+        return orderRepository.findOrderByReturnDateAfter(currentDate);
     }
 
     @Override
-    public List<Order> orders() {
-        return orderRepository.findAll();
+    public List<Order> orders(LocalDate currentDate) {
+        return orderRepository.findOrderByReturnDateBefore(currentDate);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        orderRepository.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public void deleteOrdersBeforeGivenDate(LocalDate givenDate) {
+        orderRepository.deleteOrderByReturnDateBefore(givenDate);
     }
 }
