@@ -25,11 +25,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order cancelOrder(Order order) {
-        return orderRepository.save(order);
-    }
-
-    @Override
     public List<Order> activeOrders(LocalDate currentDate) {
         return orderRepository.findOrderByReturnDateAfter(currentDate);
     }
