@@ -29,9 +29,8 @@ public class OrderController {
     }
 
     @PutMapping("/cancelorder")
-    @ResponseBody
-    public ResponseEntity<String> cancelOrder(@RequestBody Order order) {
-        orderServiceImpl.cancelOrder(order);
+    public ResponseEntity<String> cancelOrder(@RequestParam Long id) {
+        orderServiceImpl.deleteById(id);
         return ResponseEntity.ok("Your order was cancelled");
     }
 

@@ -10,8 +10,6 @@ public interface OrderService {
 
     Order addOrder(Order order);
 
-    Order cancelOrder(Order order);
-
     List<Order> activeOrders(LocalDate currentDate);
 
     List<Order> orders(LocalDate currentDate);
