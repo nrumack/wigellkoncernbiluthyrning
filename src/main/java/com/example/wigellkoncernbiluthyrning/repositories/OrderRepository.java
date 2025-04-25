@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    List<Order> findOrderByReturnDateAfter(LocalDate currentDate);
+    List<Order> findByReturnDateGreaterThanEqual(LocalDate currentDate);
 
-    List<Order> findOrderByReturnDateBefore(LocalDate currentDate);
+    List<Order> findByReturnDateLessThan(LocalDate currentDate);
 
     void deleteById(@NonNull Long id);
 

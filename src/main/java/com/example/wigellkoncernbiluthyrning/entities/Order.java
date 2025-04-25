@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 // Marc
 @Entity
@@ -15,7 +16,7 @@ public class Order {
     private Long id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(length = 10)
+    @Column(length = 10, columnDefinition = "DATE")
     private LocalDate orderPlaced;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -29,13 +30,13 @@ public class Order {
     @Column(length = 10)
     private int totalCost;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private Customer customer;*/
 
-    @OneToOne
+    /*@OneToOne
     @JoinColumn(name = "car_id")
-    private Car car;
+    private Car car;*/
 
     public Order() {
     }
@@ -80,19 +81,19 @@ public class Order {
         this.totalCost = totalCost;
     }
 
-    public Customer getCustomer() {
+    /*public Customer getCustomer() {
         return customer;
     }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
+    }*/
 
-    public Car getCar() {
+    /*public Car getCar() {
         return car;
     }
 
     public void setCar(Car car) {
         this.car = car;
-    }
+    }*/
 }
