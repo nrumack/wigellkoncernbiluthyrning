@@ -30,6 +30,14 @@ public class Order {
     @Column(length = 10)
     private int totalCost;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @OneToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
+
     /*@ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;*/

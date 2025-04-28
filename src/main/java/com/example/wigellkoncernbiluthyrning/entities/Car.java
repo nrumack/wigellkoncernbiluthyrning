@@ -5,18 +5,26 @@ import jakarta.persistence.*;
 //Anna, SCRUM-6
 
 @Entity
+@Table (name = "car")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "make", nullable = false)
     private String make;
+    @Column(name = "model", nullable = false)
     private String model;
+    @Column(name = "register_number", nullable = false)
     private String registrationNumber;
+    @Column(name = "price_per_day")
     private double pricePerDay;
+
     private boolean booked;
     private boolean inService;
+
+    @OneToOne(mappedBy = "car")
+    private Order order;
 
     public Car() {}
 

@@ -1,21 +1,31 @@
 package com.example.wigellkoncernbiluthyrning.entities;
 
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //Created by Nicholas
 @Entity
+@Table (name = "customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(unique=true, nullable=false)
     private String socialSecurityNumber;
-    @Column(nullable=false)
+    @Column(name = "first_name", nullable=false)
     private String firstName;
-    @Column(nullable=false)
+    @Column(name = "last_name", nullable=false)
     private String lastName;
+    @Column(name = "email")
     private String email;
+    @Column(name = "phone")
     private String phone;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders = new ArrayList<>();
 
     public Customer() {}
 
