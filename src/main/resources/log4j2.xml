@@ -1,0 +1,25 @@
+<configuration status="info">
+
+    <properties>
+        <property name="layout">
+            %highlight{%d [%t] %-5level %logger - %m%n}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=cyan, TRACE=blue}</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layout}" disableAnsi="false"/>
+        </Console>
+
+        <File name="LogFile" fileName="logs/app.log">
+            <PatternLayout pattern="${layout}"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="LogFile"/>
+        </Root>
+    </Loggers>
+
+</configuration>
