@@ -14,6 +14,8 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     // Hämta alla tillgängliga bilar
     List<Car> findByBookedFalseAndInServiceFalse();
 
+    Car findCarById(Long id);
+
     // Hämta bil via registreringsnummer, ska vi ha den metoden?
     Car findByRegistrationNumber(String registrationNumber);
 }
