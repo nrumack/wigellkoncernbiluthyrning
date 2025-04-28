@@ -30,9 +30,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order addOrder(Order order) {
-        //orderCalculator.calculateTotalCost(order, carRepository.getCarById(order.getCar().getId()));
+        orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
         WIGELLLOGGER.info("A new order was placed.");
-        //System.out.println("A new order with id " + order.getId() + " has been saved.");
         return orderRepository.save(order);
         //WIGELLLOGGER.warn("The user entered an invalid/incomplete order");
     }
