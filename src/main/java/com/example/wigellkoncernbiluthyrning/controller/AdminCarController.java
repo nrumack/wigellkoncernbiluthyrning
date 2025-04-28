@@ -1,34 +1,47 @@
 package com.example.wigellkoncernbiluthyrning.controller;
 
+import com.example.wigellkoncernbiluthyrning.entities.Car;
+import com.example.wigellkoncernbiluthyrning.services.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/v1/admin/cars")
+@RequestMapping("/api/v1/admin")
 public class AdminCarController {
 
-    @GetMapping
-    public ResponseEntity<String> getAvailableCars() {
-        return ResponseEntity.ok("Dummy: Get available cars");
+    private final CarService carService;
+
+    @Autowired
+    public AdminCarController(CarService carService) {
+        this.carService = carService;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<String> getAllCars() {
-        return ResponseEntity.ok("Dummy: Get all cars");
+    @GetMapping("/cars")
+    public ResponseEntity<List<Car>> getAvailableCars() {
+        return ResponseEntity.ok(carService.getAvailableCars());
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<String> addCar() {
-        return ResponseEntity.ok("Dummy: Add car");
+    @GetMapping("/allcars")
+    public ResponseEntity<List<Car>> getAllCars() {
+        return ResponseEntity.ok(carService.getAllCars());
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<String> updateCar() {
-        return ResponseEntity.ok("Dummy: Update car");
+    @PostMapping("/addcar")
+    public ResponseEntity<Car> addCar(@RequestBody Car car) {
+        return ResponseEntity.ok(carService.addCar(car));
     }
 
-    @DeleteMapping("/remove")
-    public ResponseEntity<String> removeCar() {
-        return ResponseEntity.ok("Dummy: Remove car");
+    @PutMapping("/updatecar")
+    public ResponseEntity<Car> updateCar(@RequestBody Car car) {
+        return ResponseEntity.ok(carService.updateCar(car));
+    }
+
+    @DeleteMapping("/removecar/{id}")
+    public ResponseEntity<String> removeCar(@PathVariable Long id) {
+        carService.removeCar(id);
+        return ResponseEntity.ok("Car removed successfully");
     }
 }
