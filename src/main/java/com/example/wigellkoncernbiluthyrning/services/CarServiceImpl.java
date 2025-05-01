@@ -1,6 +1,7 @@
 package com.example.wigellkoncernbiluthyrning.services;
 
 import com.example.wigellkoncernbiluthyrning.entities.Car;
+import com.example.wigellkoncernbiluthyrning.exceptions.CarNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +26,11 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getAvailableCars() {
-        return carRepository.findByBookedFalseAndInServiceFalse();
+        List<Car> cars = carRepository.findByBookedFalseAndInServiceFalse();
+        if (cars.isEmpty()) {
+            throw new CarNotFoundException();
+        }
+        return cars;
     }
 
     @Override
