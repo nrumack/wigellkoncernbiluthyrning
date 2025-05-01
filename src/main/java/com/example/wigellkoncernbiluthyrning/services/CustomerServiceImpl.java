@@ -37,10 +37,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer updateCustomer(Customer customer) {
-        CUSTOMER_LOGGER.info("Details for customer with id {} have been updated.", customer.getId());
-        return customerRepository.save(customer);
-      
     public Customer updateCustomer(Customer customerDetails) {
         CUSTOMER_LOGGER.info("Details for customer with id {} have been updated.", customerDetails.getId());
 
