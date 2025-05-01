@@ -6,15 +6,20 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
 
     @Bean
+    public UserDetailsService userDetailsService() {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
@@ -49,22 +54,38 @@ public class SecurityConfig {
                 .password("9101")
                 .roles("CUSTOMER")
                 .build();
-        
+
         UserDetails johan = User.withUsername("19881122-3456")
                 .password("3456")
                 .roles("CUSTOMER")
                 .build();
-        
+
         UserDetails elin = User.withUsername("19950505-7890")
                 .password("7890")
                 .roles("CUSTOMER")
                 .build();
-        
+
         return new InMemoryUserDetailsManager(admin, anna, erik, maria, johan, elin);
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
+
+        return NoOpPasswordEncoder.getInstance();
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http.csrf().disable()
+                .authorizeHttpRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .httpBasic();
+
+        return http.build();
         return NoOpPasswordEncoder.getInstance(); 
+
     }
 }
