@@ -25,20 +25,8 @@ public class CustomerController {
 
     @PutMapping("/updateinfo")
     public ResponseEntity<Customer> updateInfo(@RequestBody Customer customerDetails) {
-        Optional<Customer> optionalCustomer = customerRepository.findById(customerDetails.getId());
-        if (optionalCustomer.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Customer existingCustomer = optionalCustomer.get();
-
-        existingCustomer.setFirstName(customerDetails.getFirstName());
-        existingCustomer.setLastName(customerDetails.getLastName());
-        existingCustomer.setEmail(customerDetails.getEmail());
-        existingCustomer.setPhone(customerDetails.getPhone());
-
-        Customer updatedCustomer = customerService.saveCustomer(existingCustomer);
-
+        Customer updatedCustomer = customerService.updateCustomer(customerDetails);
         return ResponseEntity.ok(updatedCustomer);
+
     }
 }

@@ -2,10 +2,12 @@ package com.example.wigellkoncernbiluthyrning.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 //Anna, SCRUM-6
 
 @Entity
-@Table (name = "car")
+@Table (name = "cars")
 public class Car {
 
     @Id
@@ -15,7 +17,7 @@ public class Car {
     private String make;
     @Column(name = "model", nullable = false)
     private String model;
-    @Column(name = "register_number", nullable = false)
+    @Column(name = "registration_number", nullable = false)
     private String registrationNumber;
     @Column(name = "price_per_day")
     private double pricePerDay;
@@ -23,8 +25,8 @@ public class Car {
     private boolean booked;
     private boolean inService;
 
-    @OneToOne(mappedBy = "car")
-    private Order order;
+    @OneToMany(mappedBy = "car")
+    private List<Order> orders;
 
     public Car() {}
 

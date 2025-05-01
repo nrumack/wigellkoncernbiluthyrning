@@ -40,6 +40,18 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer updateCustomer(Customer customer) {
         CUSTOMER_LOGGER.info("Details for customer with id {} have been updated.", customer.getId());
         return customerRepository.save(customer);
+      
+    public Customer updateCustomer(Customer customerDetails) {
+        CUSTOMER_LOGGER.info("Details for customer with id {} have been updated.", customerDetails.getId());
+
+        Customer existingCustomer = customerRepository.findById(customerDetails.getId()).orElseThrow();
+
+        existingCustomer.setFirstName(customerDetails.getFirstName());
+        existingCustomer.setLastName(customerDetails.getLastName());
+        existingCustomer.setEmail(customerDetails.getEmail());
+        existingCustomer.setPhone(customerDetails.getPhone());
+
+        return customerRepository.save(existingCustomer);
     }
 
     @Override

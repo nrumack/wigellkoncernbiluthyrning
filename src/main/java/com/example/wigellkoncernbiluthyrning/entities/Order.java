@@ -14,25 +14,31 @@ public class Order {
     private Long id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+
     private LocalDate orderPlaced = LocalDate.now();
+    private final LocalDate orderPlaced;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(nullable = false)
     private LocalDate startDate;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(nullable = false)
     private LocalDate returnDate;
 
+    @Column(nullable = false)
     private int totalCost;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name = "car_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "car_id", nullable = false)
     private Car car;
 
     public Order() {
+        this.orderPlaced = LocalDate.now();
     }
 
     public Long getId() {
@@ -46,11 +52,7 @@ public class Order {
     public LocalDate getOrderPlaced() {
         return orderPlaced;
     }
-
-    public void setOrderPlaced(LocalDate orderPlaced) {
-        this.orderPlaced = orderPlaced;
-    }
-
+    
     public LocalDate getStartDate() {
         return startDate;
     }
