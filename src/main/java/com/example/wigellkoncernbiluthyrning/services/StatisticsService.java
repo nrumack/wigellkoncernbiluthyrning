@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// Martin
 @Service
 public class StatisticsService {
 

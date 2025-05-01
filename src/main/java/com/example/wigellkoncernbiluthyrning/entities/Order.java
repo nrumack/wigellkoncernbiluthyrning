@@ -14,6 +14,8 @@ public class Order {
     private Long id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+
+    private LocalDate orderPlaced = LocalDate.now();
     private final LocalDate orderPlaced;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
