@@ -27,7 +27,7 @@ public class Order {
     @Column(nullable = false)
     private int totalCost;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
