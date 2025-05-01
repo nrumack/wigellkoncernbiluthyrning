@@ -14,10 +14,7 @@ public class Order {
     private Long id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-
     private LocalDate orderPlaced;
-    private LocalDate orderPlaced = LocalDate.now();
-    private final LocalDate orderPlaced;r
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(nullable = false)
@@ -53,17 +50,17 @@ public class Order {
     public LocalDate getOrderPlaced() {
         return orderPlaced;
     }
-    
+
+    public void setOrderPlaced(LocalDate orderPlaced) {
+        this.orderPlaced = orderPlaced;
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
-    }
-
-    public void setOrderPlaced(LocalDate orderPlaced) {
-        this.orderPlaced = orderPlaced;
     }
 
     public LocalDate getReturnDate() {
