@@ -14,7 +14,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByReturnDateGreaterThanEqual(LocalDate currentDate);
 
-    List<Order> findByReturnDateLessThan(LocalDate currentDate);
+    List<Order> findOrderByReturnDateBefore(LocalDate currentDate);
 
     void deleteById(@NonNull Long id);
 

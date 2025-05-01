@@ -8,7 +8,7 @@ import java.util.List;
 // Marc
 public interface OrderService {
 
-    Order addOrder(Order order);
+    void addOrder(Order order);
 
     List<Order> activeOrders(LocalDate currentDate);
 

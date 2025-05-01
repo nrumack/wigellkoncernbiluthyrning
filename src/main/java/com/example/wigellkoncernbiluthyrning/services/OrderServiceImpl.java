@@ -1,7 +1,11 @@
 package com.example.wigellkoncernbiluthyrning.services;
 
+import com.example.wigellkoncernbiluthyrning.entities.Car;
+import com.example.wigellkoncernbiluthyrning.entities.Customer;
 import com.example.wigellkoncernbiluthyrning.entities.Order;
-import com.example.wigellkoncernbiluthyrning.exceptions.BasicException;
+import com.example.wigellkoncernbiluthyrning.exceptions.IncorrectFormException;
+import com.example.wigellkoncernbiluthyrning.exceptions.NoContentException;
+import com.example.wigellkoncernbiluthyrning.exceptions.OrderNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.CustomerRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
@@ -31,51 +35,65 @@ public class OrderServiceImpl implements OrderService {
     private static final Logger ORDER_LOGGER = LogManager.getLogger(OrderServiceImpl.class);
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, CarRepository carRepository, CustomerRepository customerRepository, OrderCalculator orderCalculator, OrderValidator orderValidator) {
+    public OrderServiceImpl(OrderRepository orderRepository, CarRepository carRepository, OrderCalculator orderCalculator, CustomerRepository customerRepository, OrderValidator orderValidator) {
         this.orderRepository = orderRepository;
         this.carRepository = carRepository;
-        this.customerRepository = customerRepository;
         this.orderCalculator = orderCalculator;
+        this.customerRepository = customerRepository;
         this.orderValidator = orderValidator;
     }
 
     @Transactional
     @Override
-    public Order addOrder(Order order) {
-
-        /*Customer customer = customerRepository.save(order.getCustomer());
-        order.setCustomer(customer);*/
+    public void addOrder(Order order) {
+        Customer customer = customerRepository.save(order.getCustomer());
+        order.setCustomer(customer);
+        Car car = carRepository.save(order.getCar());
+        order.setCar(car);
+        String errorMessage = orderValidator.orderForm(order);
+        if (!orderValidator.isValid()) {
+            throw new IncorrectFormException(errorMessage);
+        }
         orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
-        ORDER_LOGGER.info("A new order was added to the database.");
-        return orderRepository.save(order);
+        orderRepository.save(order);
+        ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
     }
 
     @Override
     public List<Order> activeOrders(LocalDate currentDate) {
-        if (orderRepository.findByReturnDateGreaterThanEqual(currentDate).isEmpty()) {
-            throw new BasicException("There are no active orders");
+        List<Order> activeOrders = orderRepository.findByReturnDateGreaterThanEqual(currentDate);
+        if (activeOrders.isEmpty()) {
+            throw new NoContentException("There are no active orders to display");
         }
         return orderRepository.findByReturnDateGreaterThanEqual(currentDate);
     }
 
     @Override
     public List<Order> orders(LocalDate currentDate) {
-        return orderRepository.findByReturnDateLessThan(currentDate);
+        List<Order> pastOrders = orderRepository.findOrderByReturnDateBefore(currentDate);
+        if (pastOrders.isEmpty()) {
+            throw new NoContentException("There were no past orders to display");
+        }
+        return orderRepository.findOrderByReturnDateBefore(currentDate);
     }
 
     @Override
     public void deleteById(Long id) {
         if (orderRepository.findById(id).isEmpty()) {
-            throw new BasicException("No order with id " + id + " was found.");
+            throw new OrderNotFoundException("Order with id " + id + " does not exist.");
         }
-        ORDER_LOGGER.warn("Order with id {} was deleted.", id);
         orderRepository.deleteById(id);
+        ORDER_LOGGER.warn("Order with id {} was deleted.", id);
     }
 
     @Transactional
     @Override
     public void deleteOrdersBeforeGivenDate(LocalDate givenDate) {
-        ORDER_LOGGER.warn("All orders before {} have been deleted.", givenDate);
+        List<Order> orders = orderRepository.findOrderByReturnDateBefore(givenDate);
+        if (orders.isEmpty()) {
+            throw new NoContentException("There were no orders to delete");
+        }
         orderRepository.deleteOrderByReturnDateBefore(givenDate);
+        ORDER_LOGGER.warn("All orders before {} have been deleted.", givenDate);
     }
 }

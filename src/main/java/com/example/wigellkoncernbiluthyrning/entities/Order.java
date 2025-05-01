@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
-//  Marc
+// Marc
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -30,7 +30,7 @@ public class Order {
     @Column(nullable = false)
     private int totalCost;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
