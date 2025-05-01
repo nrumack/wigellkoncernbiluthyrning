@@ -8,7 +8,7 @@ import java.util.List;
 
 //Created by Nicholas
 @Entity
-@Table (name = "customer")
+@Table (name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
