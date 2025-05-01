@@ -32,4 +32,9 @@ public class GlobalExceptionHandler extends RuntimeException {
     public ResponseEntity<?> handleNoContent(NoContentException ex) {
         return ResponseEntity.noContent().build();
     }
+
+    @ExceptionHandler(IncorrectFormException.class)
+    public ResponseEntity<?> handleIncorrectForm(IncorrectFormException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
 }

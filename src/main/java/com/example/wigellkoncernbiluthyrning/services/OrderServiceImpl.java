@@ -1,13 +1,16 @@
 package com.example.wigellkoncernbiluthyrning.services;
 
+import com.example.wigellkoncernbiluthyrning.entities.Car;
 import com.example.wigellkoncernbiluthyrning.entities.Customer;
 import com.example.wigellkoncernbiluthyrning.entities.Order;
+import com.example.wigellkoncernbiluthyrning.exceptions.IncorrectFormException;
 import com.example.wigellkoncernbiluthyrning.exceptions.NoContentException;
 import com.example.wigellkoncernbiluthyrning.exceptions.OrderNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.CustomerRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
 import com.example.wigellkoncernbiluthyrning.services.calculators.OrderCalculator;
+import com.example.wigellkoncernbiluthyrning.validators.OrderValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,24 +27,32 @@ public class OrderServiceImpl implements OrderService {
     private final CarRepository carRepository;
     private final OrderCalculator orderCalculator;
     private final CustomerRepository customerRepository;
+    private final OrderValidator orderValidator;
     private static final Logger ORDER_LOGGER = LogManager.getLogger(OrderServiceImpl.class);
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, CarRepository carRepository, CustomerRepository customerRepository, OrderCalculator orderCalculator) {
+    public OrderServiceImpl(OrderRepository orderRepository, CarRepository carRepository, OrderCalculator orderCalculator, CustomerRepository customerRepository, OrderValidator orderValidator) {
         this.orderRepository = orderRepository;
         this.carRepository = carRepository;
-        this.customerRepository = customerRepository;
         this.orderCalculator = orderCalculator;
+        this.customerRepository = customerRepository;
+        this.orderValidator = orderValidator;
     }
 
     @Transactional
     @Override
-    public Order addOrder(Order order) {
+    public void addOrder(Order order) {
         Customer customer = customerRepository.save(order.getCustomer());
         order.setCustomer(customer);
+        Car car = carRepository.save(order.getCar());
+        order.setCar(car);
+        String errorMessage = orderValidator.orderForm(order);
+        if (!orderValidator.isValid()) {
+            throw new IncorrectFormException(errorMessage);
+        }
         orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
-        ORDER_LOGGER.info("A new order was added to the database.");
-        return orderRepository.save(order);
+        orderRepository.save(order);
+        ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
     }
 
     @Override
@@ -57,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> orders(LocalDate currentDate) {
         List<Order> pastOrders = orderRepository.findOrderByReturnDateBefore(currentDate);
         if (pastOrders.isEmpty()) {
-            throw new NoContentException("There were no orders to display");
+            throw new NoContentException("There were no past orders to display");
         }
         return orderRepository.findOrderByReturnDateBefore(currentDate);
     }
