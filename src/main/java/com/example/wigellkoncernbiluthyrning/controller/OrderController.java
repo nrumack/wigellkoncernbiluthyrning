@@ -2,7 +2,9 @@ package com.example.wigellkoncernbiluthyrning.controller;
 
 import com.example.wigellkoncernbiluthyrning.entities.Order;
 import com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl;
+import com.example.wigellkoncernbiluthyrning.validators.OrderValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,17 +17,23 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class OrderController {
     private final OrderServiceImpl orderServiceImpl;
+    private final OrderValidator orderValidator;
 
     @Autowired
-    public OrderController(OrderServiceImpl orderServiceImpl) {
+    public OrderController(OrderServiceImpl orderServiceImpl, OrderValidator orderValidator) {
         this.orderServiceImpl = orderServiceImpl;
+        this.orderValidator = orderValidator;
     }
 
     @PostMapping("/addorder")
     @ResponseBody
     public ResponseEntity<String> addOrder(@RequestBody Order order) {
+        String message = orderValidator.validateDates(order);
+        if(!orderValidator.isValid()) {
+            return ResponseEntity.badRequest().body(message);
+        }
         orderServiceImpl.addOrder(order);
-        return ResponseEntity.ok("A new order has been placed");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Your order has been placed");
     }
 
     @PutMapping("/cancelorder")
