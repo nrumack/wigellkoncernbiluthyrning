@@ -10,17 +10,26 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+//Nicholas
 @RestControllerAdvice
 public class GlobalExceptionHandler extends RuntimeException {
 
-    @ExceptionHandler(CustomerNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleCustomerNotFound(CustomerNotFoundException e) {
+    private ResponseEntity<Map<String, Object>> buildErrorResponse(Exception e, HttpStatus status) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", e.getMessage());
         body.put("status", HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(body, status);
+    }
 
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleCustomerNotFound(CustomerNotFoundException e) {
+        return buildErrorResponse(e, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CarNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleCarNotFound(CarNotFoundException e) {
+        return buildErrorResponse(e, HttpStatus.NOT_FOUND);
     }
 
 }

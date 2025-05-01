@@ -1,6 +1,7 @@
 package com.example.wigellkoncernbiluthyrning.services;
 
 import com.example.wigellkoncernbiluthyrning.entities.Customer;
+import com.example.wigellkoncernbiluthyrning.exceptions.CustomerNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CustomerRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -37,14 +39,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer updateCustomer(Customer customer) {
-        CUSTOMER_LOGGER.info("Details for customer with id {} have been updated.", customer.getId());
-        return customerRepository.save(customer);
-      
     public Customer updateCustomer(Customer customerDetails) {
         CUSTOMER_LOGGER.info("Details for customer with id {} have been updated.", customerDetails.getId());
 
-        Customer existingCustomer = customerRepository.findById(customerDetails.getId()).orElseThrow();
+        Customer existingCustomer = customerRepository.findById(customerDetails.getId()).orElseThrow(()->new CustomerNotFoundException(customerDetails.getId()));
 
         existingCustomer.setFirstName(customerDetails.getFirstName());
         existingCustomer.setLastName(customerDetails.getLastName());
