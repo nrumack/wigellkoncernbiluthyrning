@@ -23,4 +23,13 @@ public class GlobalExceptionHandler extends RuntimeException {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<String> handleOrderNotFound(OrderNotFoundException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
+    @ExceptionHandler(NoContentException.class)
+    public ResponseEntity<?> handleNoContent(NoContentException ex) {
+        return ResponseEntity.noContent().build();
+    }
 }
