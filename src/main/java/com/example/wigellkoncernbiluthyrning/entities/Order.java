@@ -14,7 +14,10 @@ public class Order {
     private Long id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+
     private LocalDate orderPlaced;
+    private LocalDate orderPlaced = LocalDate.now();
+    private final LocalDate orderPlaced;r
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(nullable = false)

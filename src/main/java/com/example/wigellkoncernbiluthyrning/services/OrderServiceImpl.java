@@ -6,7 +6,9 @@ import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.CustomerRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
 import com.example.wigellkoncernbiluthyrning.services.calculators.OrderCalculator;
+
 import com.example.wigellkoncernbiluthyrning.validators.OrderValidator;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,10 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final CarRepository carRepository;
     private final OrderCalculator orderCalculator;
+
     private final CustomerRepository customerRepository;
     private final OrderValidator orderValidator;
+
     private static final Logger ORDER_LOGGER = LogManager.getLogger(OrderServiceImpl.class);
 
     @Autowired
@@ -38,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public Order addOrder(Order order) {
+
         /*Customer customer = customerRepository.save(order.getCustomer());
         order.setCustomer(customer);*/
         orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
