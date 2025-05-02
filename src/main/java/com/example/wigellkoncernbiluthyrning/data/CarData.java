@@ -5,6 +5,7 @@ import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+//Anna, scrum-27
 @Component
 public class CarData implements CommandLineRunner {
     private final CarRepository carRepository;

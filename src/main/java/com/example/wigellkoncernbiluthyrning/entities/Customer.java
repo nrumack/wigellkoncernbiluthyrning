@@ -16,15 +16,20 @@ public class Customer {
     private String lastName;
     private String email;
     private String phone;
+    //Anna, add password
+    @Column(nullable = false)
+    private String password;
 
     public Customer() {}
 
-    public Customer(String socialSecurityNumber, String firstName, String lastName, String email, String phone) {
+    public Customer(String socialSecurityNumber, String firstName, String lastName, String email, String phone, String password) {
         this.socialSecurityNumber = socialSecurityNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        //Anna
+        this.password = password;
     }
 
     public long getId() {
@@ -73,5 +78,13 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    //Anna
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
