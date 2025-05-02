@@ -44,21 +44,23 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Transactional
-    @Override
+   @Override
     public void addOrder(Order order) {
-        Customer customer = customerRepository.save(order.getCustomer());
-        order.setCustomer(customer);
-        Car car = carRepository.save(order.getCar());
-        order.setCar(car);
-        String errorMessage = orderValidator.orderForm(order);
-        if (!orderValidator.isValid()) {
-            throw new IncorrectFormException(errorMessage);
-        }
-        orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
-        orderRepository.save(order);
-        ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
+        Customer customer = customerRepository.findById(order.getCustomer().getId())
+            .orElseThrow(() -> new IllegalArgumentException("Customer does not exist"));
+
+        Car car = carRepository.findById(order.getCar().getId())
+            .orElseThrow(() -> new IllegalArgumentException("Car does not exist"));
+
+            order.setCustomer(customer);
+            order.setCar(car);
+
+            orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
+            orderRepository.save(order);
+            ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
     }
 
+    
     @Override
     public List<Order> activeOrders(LocalDate currentDate) {
         List<Order> activeOrders = orderRepository.findByReturnDateGreaterThanEqual(currentDate);
