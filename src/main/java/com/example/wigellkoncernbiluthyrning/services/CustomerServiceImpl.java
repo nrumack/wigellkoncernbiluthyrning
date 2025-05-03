@@ -1,6 +1,7 @@
 package com.example.wigellkoncernbiluthyrning.services;
 
 import com.example.wigellkoncernbiluthyrning.entities.Customer;
+import com.example.wigellkoncernbiluthyrning.exceptions.CustomerHasOrdersException;
 import com.example.wigellkoncernbiluthyrning.exceptions.CustomerNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CustomerRepository;
 import org.apache.logging.log4j.LogManager;
@@ -41,7 +42,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer updateCustomer(Customer customerDetails) {
         CUSTOMER_LOGGER.info("Details for customer with id {} have been updated.", customerDetails.getId());
-
         Customer existingCustomer = customerRepository.findById(customerDetails.getId()).orElseThrow(()->new CustomerNotFoundException(customerDetails.getId()));
 
         existingCustomer.setFirstName(customerDetails.getFirstName());
@@ -50,12 +50,19 @@ public class CustomerServiceImpl implements CustomerService {
         existingCustomer.setPhone(customerDetails.getPhone());
 
         return customerRepository.save(existingCustomer);
+
     }
 
     @Override
     public void deleteCustomer(Long id) {
-        CUSTOMER_LOGGER.warn("Customer with id {} was removed from the database", id);
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException(id));
+
+        if (!customer.getOrders().isEmpty()) {
+            throw new CustomerHasOrdersException("Cannot delete customer with existing orders");
+        }
+
         customerRepository.deleteById(id);
+        CUSTOMER_LOGGER.warn("Customer with id {} was removed from the database", id);
     }
 
 }
