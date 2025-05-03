@@ -17,7 +17,7 @@ public class StatisticsService {
     public StatisticsService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
- 
+
     public String getMostRentedBrand() {
         List<Order> orders = orderRepository.findAll();
         return orders.stream()
@@ -64,10 +64,9 @@ public class StatisticsService {
                 ));
     }
 
-    public int getTotalIncomeBetween(LocalDate from, LocalDate to) {
+    public int getTotalIncome() {
         List<Order> orders = orderRepository.findAll();
         return orders.stream()
-                .filter(o -> !o.getStartDate().isBefore(from) && !o.getReturnDate().isAfter(to))
                 .mapToInt(Order::getTotalCost)
                 .sum();
     }
