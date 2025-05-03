@@ -20,8 +20,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(CarNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleCarNotFound(CarNotFoundException e) {
+    @ExceptionHandler(AvailableCarNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCarNotFound(AvailableCarNotFoundException e) {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND, e.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
@@ -44,6 +44,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CarDeleteException.class)
     public ResponseEntity<ErrorResponse> handleCarDelete(CarDeleteException e) {
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.CONFLICT, e.getMessage()), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(CarNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCarNotFound(CarNotFoundException e) {
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND, e.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     //Marc and Nicholas
