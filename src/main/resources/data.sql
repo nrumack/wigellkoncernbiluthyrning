@@ -6,13 +6,12 @@ VALUES
     (2000.00,'Porsche','911 GT3','KLJ 798',true,false),
     (300.00,'Hyundai','Atos Prime','AWE 876',true,false);
 
-INSERT INTO customers (social_security_number, first_name, last_name, email, phone)
-VALUES
-    ('19850101-1234','Anna','Svensson','',''),
-    ('19900215-5678','Erik','Johansson','',''),
-    ('19751230-9101','Maria','Lindberg','',''),
-    ('19881122-3456','Johan','Karlsson','',''),
-    ('19950505-7890','Elin','Andersson','','');
+INSERT INTO customers (social_security_number, first_name, last_name, email, phone, password) VALUES 
+('19850101-1234', 'Anna', 'Svensson', '', '', '1234'),
+('19900215-5678', 'Erik', 'Johansson', '', '', '5678'),
+('19751230-9101', 'Maria', 'Lindberg', '', '', '9101'),
+('19881122-3456', 'Johan', 'Karlsson', '', '', '3456'),
+('19950505-7890', 'Elin', 'Andersson', '', '', '7890');
 
 INSERT INTO orders (order_placed, start_date, return_date, total_cost, car_id, customer_id)
 VALUES
