@@ -41,6 +41,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.CONFLICT, e.getMessage()), HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(CarDeleteException.class)
+    public ResponseEntity<ErrorResponse> handleCarDelete(CarDeleteException e) {
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.CONFLICT, e.getMessage()), HttpStatus.CONFLICT);
+    }
+
     //Marc and Nicholas
     @ExceptionHandler(OrderNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleOrderNotFound(OrderNotFoundException e) {

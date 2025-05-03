@@ -1,8 +1,10 @@
 package com.example.wigellkoncernbiluthyrning.services;
 
 import com.example.wigellkoncernbiluthyrning.entities.Car;
+import com.example.wigellkoncernbiluthyrning.exceptions.CarDeleteException;
 import com.example.wigellkoncernbiluthyrning.exceptions.CarNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,12 +60,12 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void removeCar(Long id) {
-        if (carRepository.existsById(id)) {
-            CAR_LOGGER.warn("Car with id {} was removed from the database.", id);
-            carRepository.deleteById(id);
-        } else {
-            CAR_LOGGER.warn("Admin tried deleting a car with id {} but it does not exist in the database", id);
-            throw new RuntimeException("Car with ID " + id + " not found");
+        Car car = carRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Car with id " + id + " not found"));
+        CAR_LOGGER.warn("Car with id {} was removed from the database.", id);
+        if (car.isBooked()) {
+            throw new CarDeleteException("Cannot delete a car with id " + id + " because it is booked");
+
         }
+        carRepository.deleteById(id);
     }
 }
