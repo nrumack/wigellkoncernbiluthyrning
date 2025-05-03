@@ -1,7 +1,7 @@
 package com.example.wigellkoncernbiluthyrning.exceptions;
 
 public class CarNotFoundException extends RuntimeException {
-    public CarNotFoundException() {
-        super("No cars available currently");
+    public CarNotFoundException(Long id) {
+        super("Car with id: " + id + " not found");
     }
 }

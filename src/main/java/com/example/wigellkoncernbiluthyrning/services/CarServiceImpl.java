@@ -2,6 +2,7 @@ package com.example.wigellkoncernbiluthyrning.services;
 
 import com.example.wigellkoncernbiluthyrning.entities.Car;
 import com.example.wigellkoncernbiluthyrning.exceptions.CarDeleteException;
+import com.example.wigellkoncernbiluthyrning.exceptions.AvailableCarNotFoundException;
 import com.example.wigellkoncernbiluthyrning.exceptions.CarNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 //Anna, SCRUM-8
 
@@ -30,7 +31,7 @@ public class CarServiceImpl implements CarService {
     public List<Car> getAvailableCars() {
         List<Car> cars = carRepository.findByBookedFalseAndInServiceFalse();
         if (cars.isEmpty()) {
-            throw new CarNotFoundException();
+            throw new AvailableCarNotFoundException();
         }
         return cars;
     }
@@ -45,19 +46,23 @@ public class CarServiceImpl implements CarService {
         CAR_LOGGER.info("A new car was added to the database");
         return carRepository.save(car);
     }
-
+    //Anna and Nicholas
     @Override
     public Car updateCar(Car car) {
-        Optional<Car> existing = carRepository.findById(car.getId());
-        if (existing.isPresent()) {
-            CAR_LOGGER.info("Details for car with id {} have been updated.", existing);
-            return carRepository.save(car);
-        } else {
-            CAR_LOGGER.warn("Admin tried updating a car with id {} but it does not exist in the database.", existing);
-            throw new RuntimeException("Car with ID " + car.getId() + " not found");
-        }
+        Long carId = car.getId();
+
+        Car existingCar = carRepository.findById(carId).orElseThrow(()-> new CarNotFoundException(carId));
+        CAR_LOGGER.info("Updating existing car with id " + carId);
+
+        existingCar.setMake(car.getMake());
+        existingCar.setModel(car.getModel());
+        existingCar.setPricePerDay(car.getPricePerDay());
+        existingCar.setRegistrationNumber(existingCar.getRegistrationNumber());
+        return carRepository.save(existingCar);
+
     }
 
+    //Anna and Nicho
     @Override
     public void removeCar(Long id) {
         Car car = carRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Car with id " + id + " not found"));
