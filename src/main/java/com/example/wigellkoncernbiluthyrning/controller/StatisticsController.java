@@ -1,14 +1,12 @@
 package com.example.wigellkoncernbiluthyrning.controller;
 
 import com.example.wigellkoncernbiluthyrning.services.StatisticsService;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.time.LocalDate;
 
-// Martin
 @RestController
 @RequestMapping("/api/v1/admin/statistics")
 public class StatisticsController {
@@ -19,35 +17,18 @@ public class StatisticsController {
         this.statisticsService = statisticsService;
     }
 
-    @GetMapping("/most-rented-brand")
-    public ResponseEntity<String> getMostRentedBrand() {
-        return ResponseEntity.ok(statisticsService.getMostRentedBrand());
-    }
+    @GetMapping
+    public ResponseEntity<Map<String, Object>> getAllStatistics() {
 
-    @GetMapping("/total-income")
-    public ResponseEntity<Integer> getTotalIncome(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
-        return ResponseEntity.ok(statisticsService.getTotalIncomeBetween(from, to));
-    }
+        Map<String, Object> stats = new LinkedHashMap<>();
 
-        @GetMapping("/rentals-per-car")
-    public ResponseEntity<Map<String, Long>> getRentalsPerCar() {
-        return ResponseEntity.ok(statisticsService.getTotalRentalsPerCar());
-    }
+        stats.put("mostRentedBrand", statisticsService.getMostRentedBrand());
+        stats.put("totalRentalsPerCar", statisticsService.getTotalRentalsPerCar());
+        stats.put("averageOrderCost", statisticsService.getAverageOrderCost());
+        stats.put("mostCommonRentalLength", statisticsService.getMostCommonRentalLength());
+        stats.put("totalIncomePerCar", statisticsService.getTotalIncomePerCar());
+        stats.put("totalIncome", statisticsService.getTotalIncome());
 
-    @GetMapping("/average-cost")
-    public ResponseEntity<Double> getAverageOrderCost() {
-        return ResponseEntity.ok(statisticsService.getAverageOrderCost());
-    }
-
-    @GetMapping("/common-rental-length")
-    public ResponseEntity<Integer> getMostCommonRentalLength() {
-        return ResponseEntity.ok(statisticsService.getMostCommonRentalLength());
-    }
-
-    @GetMapping("/income-per-car")
-    public ResponseEntity<Map<String, Integer>> getTotalIncomePerCar() {
-        return ResponseEntity.ok(statisticsService.getTotalIncomePerCar());
+        return ResponseEntity.ok(stats);
     }
 }
