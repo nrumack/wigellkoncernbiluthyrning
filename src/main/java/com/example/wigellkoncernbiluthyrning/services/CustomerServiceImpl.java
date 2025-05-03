@@ -8,8 +8,10 @@ import com.example.wigellkoncernbiluthyrning.utility.SsnUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import org.springframework.security.access.AccessDeniedException;
 import java.util.List;
 
 
@@ -45,8 +47,14 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer updateCustomer(Customer customerDetails) {
+        String loggedInCustomer = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        if (!loggedInCustomer.equals(customerDetails.getSocialSecurityNumber())) {
+            throw new AccessDeniedException("You are not authorized to update this");
+        }
+
         CUSTOMER_LOGGER.info("Details for customer with id {} have been updated.", customerDetails.getId());
-        Customer existingCustomer = customerRepository.findById(customerDetails.getId()).orElseThrow(()->new CustomerNotFoundException(customerDetails.getId()));
+        Customer existingCustomer = customerRepository.findOptionalBySocialSecurityNumber(loggedInCustomer).orElseThrow(()-> new CustomerNotFoundException(loggedInCustomer));
 
         existingCustomer.setFirstName(customerDetails.getFirstName());
         existingCustomer.setLastName(customerDetails.getLastName());
