@@ -4,6 +4,7 @@ import com.example.wigellkoncernbiluthyrning.entities.Customer;
 import com.example.wigellkoncernbiluthyrning.exceptions.CustomerHasOrdersException;
 import com.example.wigellkoncernbiluthyrning.exceptions.CustomerNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CustomerRepository;
+import com.example.wigellkoncernbiluthyrning.utility.SsnUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer saveCustomer(Customer customer) {
         CUSTOMER_LOGGER.info("{} {} was added to the database.", customer.getFirstName(), customer.getLastName());
+        String rawPassword = SsnUtil.SsnToPassword(customer.getSocialSecurityNumber());
+
+        customer.setPassword(rawPassword);
         return customerRepository.save(customer);
     }
 
