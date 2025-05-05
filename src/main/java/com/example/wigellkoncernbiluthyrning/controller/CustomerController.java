@@ -4,10 +4,7 @@ import com.example.wigellkoncernbiluthyrning.entities.Customer;
 import com.example.wigellkoncernbiluthyrning.repositories.CustomerRepository;
 import com.example.wigellkoncernbiluthyrning.services.CustomerService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -23,8 +20,10 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @PutMapping("/updateinfo")
-    public ResponseEntity<Customer> updateInfo(@RequestBody Customer customerDetails) {
+    @PutMapping("/updateinfo/{id}")
+    public ResponseEntity<Customer> updateInfo(@PathVariable Long id, @RequestBody Customer customerDetails) {
+
+        customerDetails.setId(id);
         Customer updatedCustomer = customerService.updateCustomer(customerDetails);
         return ResponseEntity.ok(updatedCustomer);
 

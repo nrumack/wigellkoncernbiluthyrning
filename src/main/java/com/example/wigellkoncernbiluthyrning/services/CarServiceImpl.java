@@ -1,14 +1,18 @@
 package com.example.wigellkoncernbiluthyrning.services;
 
 import com.example.wigellkoncernbiluthyrning.entities.Car;
+import com.example.wigellkoncernbiluthyrning.exceptions.CarDeleteException;
+import com.example.wigellkoncernbiluthyrning.exceptions.AvailableCarNotFoundException;
+import com.example.wigellkoncernbiluthyrning.exceptions.CarNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 //Anna, SCRUM-8
 
@@ -25,7 +29,11 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getAvailableCars() {
-        return carRepository.findByBookedFalseAndInServiceFalse();
+        List<Car> cars = carRepository.findByBookedFalseAndInServiceFalse();
+        if (cars.isEmpty()) {
+            throw new AvailableCarNotFoundException();
+        }
+        return cars;
     }
 
     @Override
@@ -38,27 +46,31 @@ public class CarServiceImpl implements CarService {
         CAR_LOGGER.info("A new car was added to the database");
         return carRepository.save(car);
     }
-
+    //Anna and Nicholas
     @Override
     public Car updateCar(Car car) {
-        Optional<Car> existing = carRepository.findById(car.getId());
-        if (existing.isPresent()) {
-            CAR_LOGGER.info("Details for car with id {} have been updated.", existing);
-            return carRepository.save(car);
-        } else {
-            CAR_LOGGER.warn("Admin tried updating a car with id {} but it does not exist in the database.", existing);
-            throw new RuntimeException("Car with ID " + car.getId() + " not found");
-        }
+        Long carId = car.getId();
+
+        Car existingCar = carRepository.findById(carId).orElseThrow(()-> new CarNotFoundException(carId));
+        CAR_LOGGER.info("Updating existing car with id " + carId);
+
+        existingCar.setMake(car.getMake());
+        existingCar.setModel(car.getModel());
+        existingCar.setPricePerDay(car.getPricePerDay());
+        existingCar.setRegistrationNumber(existingCar.getRegistrationNumber());
+        return carRepository.save(existingCar);
+
     }
 
+    //Anna and Nicho
     @Override
     public void removeCar(Long id) {
-        if (carRepository.existsById(id)) {
-            CAR_LOGGER.warn("Car with id {} was removed from the database.", id);
-            carRepository.deleteById(id);
-        } else {
-            CAR_LOGGER.warn("Admin tried deleting a car with id {} but it does not exist in the database", id);
-            throw new RuntimeException("Car with ID " + id + " not found");
+        Car car = carRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Car with id " + id + " not found"));
+        CAR_LOGGER.warn("Car with id {} was removed from the database.", id);
+        if (car.isBooked()) {
+            throw new CarDeleteException("Cannot delete a car with id " + id + " because it is booked");
+
         }
+        carRepository.deleteById(id);
     }
 }

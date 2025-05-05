@@ -1,6 +1,7 @@
 package com.example.wigellkoncernbiluthyrning.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
@@ -13,10 +14,13 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "The car needs to have a make")
     @Column(name = "make", nullable = false)
     private String make;
+    @NotBlank(message = "The car needs to have a model")
     @Column(name = "model", nullable = false)
     private String model;
+    @NotBlank(message = "The car needs to have a registration number")
     @Column(name = "registration_number", nullable = false)
     private String registrationNumber;
     @Column(name = "price_per_day")

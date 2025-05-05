@@ -1,14 +1,13 @@
 package com.example.wigellkoncernbiluthyrning.controller;
 
 import com.example.wigellkoncernbiluthyrning.services.StatisticsService;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 import java.time.LocalDate;
+import java.util.Map;
 
-// Martin
+//Martin
 @RestController
 @RequestMapping("/api/v1/admin/statistics")
 public class StatisticsController {
@@ -19,35 +18,19 @@ public class StatisticsController {
         this.statisticsService = statisticsService;
     }
 
-    @GetMapping("/most-rented-brand")
-    public ResponseEntity<String> getMostRentedBrand() {
-        return ResponseEntity.ok(statisticsService.getMostRentedBrand());
+    @GetMapping
+    public ResponseEntity<Map<String, Object>> getAllStatistics() {
+        Map<String, Object> statistics = statisticsService.getStatistics();
+        return ResponseEntity.ok(statistics);
     }
 
-    @GetMapping("/total-income")
-    public ResponseEntity<Integer> getTotalIncome(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
-        return ResponseEntity.ok(statisticsService.getTotalIncomeBetween(from, to));
-    }
+    @GetMapping("/{year}/{month}")
+    public ResponseEntity<Map<String, Object>> getStatisticsForMonth(@PathVariable int year, @PathVariable int month) {
 
-        @GetMapping("/rentals-per-car")
-    public ResponseEntity<Map<String, Long>> getRentalsPerCar() {
-        return ResponseEntity.ok(statisticsService.getTotalRentalsPerCar());
-    }
+        LocalDate fromDate = LocalDate.of(year, month, 1);
+        LocalDate toDate = fromDate.withDayOfMonth(fromDate.lengthOfMonth());
 
-    @GetMapping("/average-cost")
-    public ResponseEntity<Double> getAverageOrderCost() {
-        return ResponseEntity.ok(statisticsService.getAverageOrderCost());
-    }
-
-    @GetMapping("/common-rental-length")
-    public ResponseEntity<Integer> getMostCommonRentalLength() {
-        return ResponseEntity.ok(statisticsService.getMostCommonRentalLength());
-    }
-
-    @GetMapping("/income-per-car")
-    public ResponseEntity<Map<String, Integer>> getTotalIncomePerCar() {
-        return ResponseEntity.ok(statisticsService.getTotalIncomePerCar());
+        Map<String, Object> statistics = statisticsService.getStatisticsForPeriod(fromDate, toDate);
+        return ResponseEntity.ok(statistics);
     }
 }

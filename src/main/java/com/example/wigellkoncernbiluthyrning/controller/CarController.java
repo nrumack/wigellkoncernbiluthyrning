@@ -2,6 +2,7 @@ package com.example.wigellkoncernbiluthyrning.controller;
 
 import com.example.wigellkoncernbiluthyrning.services.CarServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.example.wigellkoncernbiluthyrning.entities.Car;
@@ -21,9 +22,8 @@ public class CarController {
     }
 
     @GetMapping("/cars")
-    @ResponseBody
-    public List<Car> getAvailableCars() {
-        return carServiceImpl.getAvailableCars();
+    public ResponseEntity<List<Car>> getAvailableCars() {
+        return ResponseEntity.ok(carServiceImpl.getAvailableCars());
     }
 }
 

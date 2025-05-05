@@ -35,9 +35,11 @@ public class AdminCarController {
         return ResponseEntity.ok(carService.addCar(car));
     }
 
-    @PutMapping("/updatecar")
-    public ResponseEntity<Car> updateCar(@RequestBody Car car) {
-        return ResponseEntity.ok(carService.updateCar(car));
+    @PutMapping("/updatecar/{id}")
+    public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car carInfo) {
+        carInfo.setId(id);
+        Car updatedCar = carService.updateCar(carInfo);
+        return ResponseEntity.ok(updatedCar);
     }
 
     @DeleteMapping("/removecar/{id}")
