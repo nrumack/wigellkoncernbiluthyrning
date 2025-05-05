@@ -4,9 +4,10 @@ import com.example.wigellkoncernbiluthyrning.services.StatisticsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedHashMap;
+import java.time.LocalDate;
 import java.util.Map;
 
+//Martin
 @RestController
 @RequestMapping("/api/v1/admin/statistics")
 public class StatisticsController {
@@ -19,16 +20,17 @@ public class StatisticsController {
 
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllStatistics() {
+        Map<String, Object> statistics = statisticsService.getStatistics();
+        return ResponseEntity.ok(statistics);
+    }
 
-        Map<String, Object> stats = new LinkedHashMap<>();
+    @GetMapping("/{year}/{month}")
+    public ResponseEntity<Map<String, Object>> getStatisticsForMonth(@PathVariable int year, @PathVariable int month) {
 
-        stats.put("mostRentedBrand", statisticsService.getMostRentedBrand());
-        stats.put("totalRentalsPerCar", statisticsService.getTotalRentalsPerCar());
-        stats.put("averageOrderCost", statisticsService.getAverageOrderCost());
-        stats.put("mostCommonRentalLength", statisticsService.getMostCommonRentalLength());
-        stats.put("totalIncomePerCar", statisticsService.getTotalIncomePerCar());
-        stats.put("totalIncome", statisticsService.getTotalIncome());
+        LocalDate fromDate = LocalDate.of(year, month, 1);
+        LocalDate toDate = fromDate.withDayOfMonth(fromDate.lengthOfMonth());
 
-        return ResponseEntity.ok(stats);
+        Map<String, Object> statistics = statisticsService.getStatisticsForPeriod(fromDate, toDate);
+        return ResponseEntity.ok(statistics);
     }
 }
