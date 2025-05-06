@@ -3,7 +3,6 @@ package com.example.wigellkoncernbiluthyrning.services;
 import com.example.wigellkoncernbiluthyrning.entities.Car;
 import com.example.wigellkoncernbiluthyrning.entities.Customer;
 import com.example.wigellkoncernbiluthyrning.entities.Order;
-import com.example.wigellkoncernbiluthyrning.exceptions.IncorrectFormException;
 import com.example.wigellkoncernbiluthyrning.exceptions.NoContentException;
 import com.example.wigellkoncernbiluthyrning.exceptions.OrderNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
@@ -44,23 +43,23 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Transactional
-   @Override
+    @Override
     public void addOrder(Order order) {
         Customer customer = customerRepository.findById(order.getCustomer().getId())
-            .orElseThrow(() -> new IllegalArgumentException("Customer does not exist"));
+                .orElseThrow(() -> new IllegalArgumentException("Customer does not exist"));
 
         Car car = carRepository.findById(order.getCar().getId())
-            .orElseThrow(() -> new IllegalArgumentException("Car does not exist"));
+                .orElseThrow(() -> new IllegalArgumentException("Car does not exist"));
 
-            order.setCustomer(customer);
-            order.setCar(car);
+        order.setCustomer(customer);
+        order.setCar(car);
 
-            orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
-            orderRepository.save(order);
-            ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
+        orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
+        orderRepository.save(order);
+        ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
     }
 
-    
+
     @Override
     public List<Order> activeOrders(LocalDate currentDate) {
         List<Order> activeOrders = orderRepository.findByReturnDateGreaterThanEqual(currentDate);
@@ -97,5 +96,16 @@ public class OrderServiceImpl implements OrderService {
         }
         orderRepository.deleteOrderByReturnDateBefore(givenDate);
         ORDER_LOGGER.warn("All orders before {} have been deleted.", givenDate);
+    }
+
+    @Override
+    public void cancelOrder(Long id) {
+        orderRepository.findById(id)
+                .map(order -> {
+                    order.setIsActive(false);
+                    return orderRepository.save(order);
+                })
+                .orElseThrow(() -> new OrderNotFoundException("Order not found"));
+        ORDER_LOGGER.info("Order with id {} has been cancelled", id);
     }
 }

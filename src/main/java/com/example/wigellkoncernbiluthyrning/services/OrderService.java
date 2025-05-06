@@ -17,4 +17,6 @@ public interface OrderService {
     void deleteById(Long id);
 
     void deleteOrdersBeforeGivenDate(LocalDate givenDate);
+
+    void cancelOrder(Long id);
 }

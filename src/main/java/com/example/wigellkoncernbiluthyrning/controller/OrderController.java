@@ -31,7 +31,7 @@ public class OrderController {
 
     @PutMapping("/cancelorder")
     public ResponseEntity<String> cancelOrder(@RequestParam Long id) {
-        orderServiceImpl.deleteById(id);
+        orderServiceImpl.cancelOrder(id);
         return ResponseEntity.ok("Your order was cancelled");
     }
 
