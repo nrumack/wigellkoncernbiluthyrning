@@ -42,6 +42,7 @@ public class Order {
 
     public Order() {
         this.orderPlaced = LocalDate.now();
+        this.active = true;
     }
 
     public Long getId() {

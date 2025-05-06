@@ -3,6 +3,7 @@ package com.example.wigellkoncernbiluthyrning.services;
 import com.example.wigellkoncernbiluthyrning.entities.Car;
 import com.example.wigellkoncernbiluthyrning.entities.Customer;
 import com.example.wigellkoncernbiluthyrning.entities.Order;
+import com.example.wigellkoncernbiluthyrning.exceptions.IncorrectFormException;
 import com.example.wigellkoncernbiluthyrning.exceptions.NoContentException;
 import com.example.wigellkoncernbiluthyrning.exceptions.OrderNotFoundException;
 import com.example.wigellkoncernbiluthyrning.exceptions.UnauthorisedUserException;
@@ -10,12 +11,10 @@ import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.CustomerRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
 import com.example.wigellkoncernbiluthyrning.services.calculators.OrderCalculator;
-
 import com.example.wigellkoncernbiluthyrning.validators.OrderValidator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,10 +31,8 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final CarRepository carRepository;
     private final OrderCalculator orderCalculator;
-
     private final CustomerRepository customerRepository;
     private final OrderValidator orderValidator;
-
     private static final Logger ORDER_LOGGER = LogManager.getLogger(OrderServiceImpl.class);
 
     @Autowired
@@ -50,20 +47,20 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public void addOrder(Order order) {
-        Customer customer = customerRepository.findById(order.getCustomer().getId())
-                .orElseThrow(() -> new IllegalArgumentException("Customer does not exist"));
-
-        Car car = carRepository.findById(order.getCar().getId())
-                .orElseThrow(() -> new IllegalArgumentException("Car does not exist"));
-
-        order.setCustomer(customer);
-        order.setCar(car);
-
-        orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
-        orderRepository.save(order);
-        ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
+        String message = orderValidator.orderForm(order);
+        if (!orderValidator.isValid()) {
+            throw new IncorrectFormException(message);
+        }
+            Customer customer = customerRepository.findById(order.getCustomer().getId())
+                    .orElseThrow(() -> new IncorrectFormException("Customer does not exist"));
+            Car car = carRepository.findById(order.getCar().getId())
+                    .orElseThrow(() -> new IncorrectFormException("Car does not exist"));
+            order.setCustomer(customer);
+            order.setCar(car);
+            orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
+            orderRepository.save(order);
+            ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
     }
-
 
     @Override
     public List<Order> activeOrders(LocalDate currentDate, Principal principal) {
