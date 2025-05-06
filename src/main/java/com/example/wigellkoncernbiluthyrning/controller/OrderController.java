@@ -45,8 +45,8 @@ public class OrderController {
 
     @GetMapping("/orders")
     @ResponseBody
-    public ResponseEntity<List<Order>> orders() {
-        orderServiceImpl.orders(LocalDate.now());
-        return ResponseEntity.ok(orderServiceImpl.orders(LocalDate.now()));
+    public ResponseEntity<List<Order>> orders(Principal principal) {
+        orderServiceImpl.orders(LocalDate.now(), principal);
+        return ResponseEntity.ok(orderServiceImpl.orders(LocalDate.now(), principal));
     }
 }

@@ -15,6 +15,7 @@ import com.example.wigellkoncernbiluthyrning.validators.OrderValidator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -81,12 +82,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> orders(LocalDate currentDate) {
+    public List<Order> orders(LocalDate currentDate, Principal principal) {
         List<Order> pastOrders = orderRepository.findOrderByReturnDateBefore(currentDate);
+        List<Order> filteredOrderList = new ArrayList<>();
+        String userName = principal.getName();
+        for (Order order : pastOrders) {
+            if (order.getCustomer().getSocialSecurityNumber().equals(userName)) {
+                filteredOrderList.add(order);
+            }
+        }
         if (pastOrders.isEmpty()) {
             throw new NoContentException("There were no past orders to display");
         }
-        return orderRepository.findOrderByReturnDateBefore(currentDate);
+        return filteredOrderList;
     }
 
     @Override
