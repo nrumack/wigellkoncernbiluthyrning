@@ -65,11 +65,12 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public List<Order> activeOrders(LocalDate currentDate) {
+    public List<Order> activeOrders(LocalDate currentDate, Principal principal) {
         List<Order> currentOrders = orderRepository.findByReturnDateGreaterThanEqual(currentDate);
         List<Order> activeOrders = new ArrayList<>();
+        String userName = principal.getName();
         for (Order order : currentOrders) {
-            if (order.isActive()) {
+            if (order.isActive() && order.getCustomer().getSocialSecurityNumber().equals(userName)) {
                 activeOrders.add(order);
             }
         }

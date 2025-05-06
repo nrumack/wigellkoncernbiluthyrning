@@ -11,7 +11,7 @@ public interface OrderService {
 
     void addOrder(Order order);
 
-    List<Order> activeOrders(LocalDate currentDate);
+    List<Order> activeOrders(LocalDate currentDate, Principal principal);
 
     List<Order> orders(LocalDate currentDate);
 
