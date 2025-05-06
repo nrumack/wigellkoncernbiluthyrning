@@ -14,7 +14,7 @@ VALUES
 ('19881122-3456', 'Johan', 'Karlsson', '', '', '3456'),
 ('19950505-7890', 'Elin', 'Andersson', '', '', '7890');
 
-INSERT INTO orders (order_placed, start_date, return_date, total_cost, car_id, customer_id, is_active)
+INSERT INTO orders (order_placed, start_date, return_date, total_cost, car_id, customer_id, active)
 VALUES
     ('2025-01-01','2025-01-02','2026-06-04',1500, 1, 1, false),
     ('2025-02-23','2025-02-25','2026-06-27',9000, 2, 2, false),

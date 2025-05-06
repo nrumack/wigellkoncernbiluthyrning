@@ -2,6 +2,7 @@ package com.example.wigellkoncernbiluthyrning.services;
 
 import com.example.wigellkoncernbiluthyrning.entities.Order;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,5 +19,5 @@ public interface OrderService {
 
     void deleteOrdersBeforeGivenDate(LocalDate givenDate);
 
-    void cancelOrder(Long id);
+    void cancelOrder(Long id, Principal principal);
 }

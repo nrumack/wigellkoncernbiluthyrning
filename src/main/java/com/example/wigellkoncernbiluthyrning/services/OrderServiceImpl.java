@@ -5,6 +5,7 @@ import com.example.wigellkoncernbiluthyrning.entities.Customer;
 import com.example.wigellkoncernbiluthyrning.entities.Order;
 import com.example.wigellkoncernbiluthyrning.exceptions.NoContentException;
 import com.example.wigellkoncernbiluthyrning.exceptions.OrderNotFoundException;
+import com.example.wigellkoncernbiluthyrning.exceptions.UnauthorisedUserException;
 import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.CustomerRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
@@ -18,9 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // Marc
 @Service
@@ -106,13 +109,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void cancelOrder(Long id) {
-        orderRepository.findById(id)
-                .map(order -> {
-                    order.setActive(false);
-                    return orderRepository.save(order);
-                })
-                .orElseThrow(() -> new OrderNotFoundException("Order not found"));
+    public void cancelOrder(Long id, Principal principal) {
+        Optional<Order> checkedOrder = orderRepository.findById(id);
+        String loginName = principal.getName();
+        Order order = checkedOrder.orElseThrow(() -> new OrderNotFoundException("Order not found"));
+        if (!order.getCustomer().getSocialSecurityNumber().equals(loginName)) {
+            throw new UnauthorisedUserException("You are not authorised to cancel this order");
+        }
+        order.setActive(false);
+        orderRepository.save(order);
         ORDER_LOGGER.info("Order with id {} has been cancelled", id);
     }
 }

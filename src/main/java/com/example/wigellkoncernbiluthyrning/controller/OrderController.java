@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class OrderController {
     }
 
     @PutMapping("/cancelorder")
-    public ResponseEntity<String> cancelOrder(@RequestParam Long id) {
-        orderServiceImpl.cancelOrder(id);
+    public ResponseEntity<String> cancelOrder(@RequestParam Long id, Principal principal) {
+        orderServiceImpl.cancelOrder(id, principal);
         return ResponseEntity.ok("Your order was cancelled");
     }
 
