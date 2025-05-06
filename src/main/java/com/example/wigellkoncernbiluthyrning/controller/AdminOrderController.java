@@ -5,8 +5,10 @@ import com.example.wigellkoncernbiluthyrning.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,13 +25,13 @@ public class AdminOrderController {
     }
 
     @GetMapping("/activeorders")
-    public ResponseEntity<List<Order>> getActiveOrders() {
-        return ResponseEntity.ok(orderService.activeOrders(LocalDate.now()));
+    public ResponseEntity<List<Order>> getActiveOrders(Principal principal) {
+        return ResponseEntity.ok(orderService.activeOrders(LocalDate.now(), principal));
     }
 
     @GetMapping("/orders")
-    public ResponseEntity<List<Order>> getPastOrders() {
-        return ResponseEntity.ok(orderService.orders(LocalDate.now()));
+    public ResponseEntity<List<Order>> getPastOrders(Principal principal) {
+        return ResponseEntity.ok(orderService.orders(LocalDate.now(), principal));
     }
 
     @DeleteMapping("/removeorder/{id}")

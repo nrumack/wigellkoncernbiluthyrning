@@ -52,7 +52,7 @@ public class CarServiceImpl implements CarService {
         Long carId = car.getId();
 
         Car existingCar = carRepository.findById(carId).orElseThrow(()-> new CarNotFoundException(carId));
-        CAR_LOGGER.info("Updating existing car with id " + carId);
+        CAR_LOGGER.info("Car with id {} was updated", carId);
 
         existingCar.setMake(car.getMake());
         existingCar.setModel(car.getModel());

@@ -28,6 +28,9 @@ public class Order {
     @Column(nullable = false)
     private int totalCost;
 
+    @Column
+    private boolean active;
+
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     @JsonBackReference
@@ -39,6 +42,7 @@ public class Order {
 
     public Order() {
         this.orderPlaced = LocalDate.now();
+        this.active = true;
     }
 
     public Long getId() {
@@ -95,5 +99,13 @@ public class Order {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean orderCancelled) {
+        this.active = orderCancelled;
     }
 }

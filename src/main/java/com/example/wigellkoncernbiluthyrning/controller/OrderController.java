@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,22 +31,22 @@ public class OrderController {
     }
 
     @PutMapping("/cancelorder")
-    public ResponseEntity<String> cancelOrder(@RequestParam Long id) {
-        orderServiceImpl.deleteById(id);
+    public ResponseEntity<String> cancelOrder(@RequestParam Long id, Principal principal) {
+        orderServiceImpl.cancelOrder(id, principal);
         return ResponseEntity.ok("Your order was cancelled");
     }
 
     @GetMapping("/activeorders")
     @ResponseBody
-    public ResponseEntity<List<Order>> activeOrders() {
-        orderServiceImpl.activeOrders(LocalDate.now());
-        return ResponseEntity.ok(orderServiceImpl.activeOrders(LocalDate.now()));
+    public ResponseEntity<List<Order>> activeOrders(Principal principal) {
+        orderServiceImpl.activeOrders(LocalDate.now(), principal);
+        return ResponseEntity.ok(orderServiceImpl.activeOrders(LocalDate.now(), principal));
     }
 
     @GetMapping("/orders")
     @ResponseBody
-    public ResponseEntity<List<Order>> orders() {
-        orderServiceImpl.orders(LocalDate.now());
-        return ResponseEntity.ok(orderServiceImpl.orders(LocalDate.now()));
+    public ResponseEntity<List<Order>> orders(Principal principal) {
+        orderServiceImpl.orders(LocalDate.now(), principal);
+        return ResponseEntity.ok(orderServiceImpl.orders(LocalDate.now(), principal));
     }
 }

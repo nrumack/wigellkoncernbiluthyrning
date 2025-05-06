@@ -39,12 +39,12 @@ public class OrderValidator {
             return "The start date cannot be after the return date";
         }
 
-        if (order.getCustomer().getSocialSecurityNumber() == null || order.getCustomer().getSocialSecurityNumber().isBlank()) {
+        /*if (order.getCustomer().getSocialSecurityNumber() == null || order.getCustomer().getSocialSecurityNumber().isBlank()) {
             isValid = false;
             return "You need to enter your social security number";
-        }
+        }*/
 
-        if (order.getCustomer().getFirstName() == null || order.getCustomer().getFirstName().isBlank()) {
+        /*if (order.getCustomer().getFirstName() == null || order.getCustomer().getFirstName().isBlank()) {
             isValid = false;
             return "You need to enter your first name";
         }
@@ -52,7 +52,7 @@ public class OrderValidator {
         if (order.getCustomer().getLastName() == null || order.getCustomer().getLastName().isBlank()) {
             isValid = false;
             return "You need to enter your last name";
-        }
+        }*/
 
         if (order.getCar().getId() == null) {
             isValid = false;
