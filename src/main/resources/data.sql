@@ -6,17 +6,18 @@ VALUES
     (2000.00,'Porsche','911 GT3','KLJ 798',true,false),
     (300.00,'Hyundai','Atos Prime','AWE 876',true,false);
 
-INSERT INTO customers (social_security_number, first_name, last_name, email, phone, password) VALUES 
+INSERT INTO customers (social_security_number, first_name, last_name, email, phone, password)
+VALUES
 ('19850101-1234', 'Anna', 'Svensson', '', '', '1234'),
 ('19900215-5678', 'Erik', 'Johansson', '', '', '5678'),
 ('19751230-9101', 'Maria', 'Lindberg', '', '', '9101'),
 ('19881122-3456', 'Johan', 'Karlsson', '', '', '3456'),
 ('19950505-7890', 'Elin', 'Andersson', '', '', '7890');
 
-INSERT INTO orders (order_placed, start_date, return_date, total_cost, car_id, customer_id)
+INSERT INTO orders (order_placed, start_date, return_date, total_cost, car_id, customer_id, active)
 VALUES
-    ('2025-01-01','2025-01-02','2026-06-04',1500, 1, 1),
-    ('2025-02-23','2025-02-25','2026-06-27',9000, 2, 2),
-    ('2025-03-03','2025-03-03','2026-06-05',1500, 3, 3),
-    ('2025-03-09','2025-04-21','2026-06-23',6000, 4, 4),
-    ('2025-12-31','2025-04-20','2026-06-25',900, 5, 5);
+    ('2020-01-01','2020-01-02','2021-06-04',1500, 1, 1, true),
+    ('2025-02-23','2025-02-25','2021-06-27',9000, 2, 1, false),
+    ('2025-03-03','2025-03-03','2026-06-05',1500, 3, 3, true),
+    ('2025-03-09','2025-04-21','2026-06-23',6000, 4, 4, true),
+    ('2025-12-31','2025-04-20','2026-06-25',900, 5, 5, true);
