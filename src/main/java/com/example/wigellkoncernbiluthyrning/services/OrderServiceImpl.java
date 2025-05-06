@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 // Marc
@@ -62,11 +63,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> activeOrders(LocalDate currentDate) {
-        List<Order> activeOrders = orderRepository.findByReturnDateGreaterThanEqual(currentDate);
+        List<Order> currentOrders = orderRepository.findByReturnDateGreaterThanEqual(currentDate);
+        List<Order> activeOrders = new ArrayList<>();
+        for (Order order : currentOrders) {
+            if (order.isActive()) {
+                activeOrders.add(order);
+            }
+        }
         if (activeOrders.isEmpty()) {
             throw new NoContentException("There are no active orders to display");
         }
-        return orderRepository.findByReturnDateGreaterThanEqual(currentDate);
+        return activeOrders;
     }
 
     @Override
@@ -102,7 +109,7 @@ public class OrderServiceImpl implements OrderService {
     public void cancelOrder(Long id) {
         orderRepository.findById(id)
                 .map(order -> {
-                    order.setIsActive(false);
+                    order.setActive(false);
                     return orderRepository.save(order);
                 })
                 .orElseThrow(() -> new OrderNotFoundException("Order not found"));

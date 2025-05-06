@@ -29,7 +29,7 @@ public class Order {
     private int totalCost;
 
     @Column
-    private boolean isActive;
+    private boolean active;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
@@ -100,11 +100,11 @@ public class Order {
         this.car = car;
     }
 
-    public boolean isIsActive() {
-        return isActive;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setIsActive(boolean orderCancelled) {
-        this.isActive = orderCancelled;
+    public void setActive(boolean orderCancelled) {
+        this.active = orderCancelled;
     }
 }
