@@ -1,6 +1,6 @@
 package com.example.wigellkoncernbiluthyrning.controller;
 
-import com.example.wigellkoncernbiluthyrning.services.StatisticsService;
+import com.example.wigellkoncernbiluthyrning.services.StatisticsServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +12,9 @@ import java.util.Map;
 @RequestMapping("/api/v1/admin/statistics")
 public class StatisticsController {
 
-    private final StatisticsService statisticsService;
+    private final StatisticsServiceImpl statisticsService;
 
-    public StatisticsController(StatisticsService statisticsService) {
+    public StatisticsController(StatisticsServiceImpl statisticsService) {
         this.statisticsService = statisticsService;
     }
 

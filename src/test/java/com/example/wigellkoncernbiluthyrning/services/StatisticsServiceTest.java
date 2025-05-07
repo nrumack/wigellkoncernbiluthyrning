@@ -19,13 +19,13 @@ import static org.mockito.Mockito.*;
 // Martin
 class StatisticsServiceTest {
 
-    private StatisticsService statisticsService;
+    private StatisticsServiceImpl statisticsService;
     private OrderRepository orderRepository;
 
     @BeforeEach
     void setUp() {
         orderRepository = mock(OrderRepository.class);
-        statisticsService = new StatisticsService(orderRepository);
+        statisticsService = new StatisticsServiceImpl(orderRepository);
     }
 
     @Test
