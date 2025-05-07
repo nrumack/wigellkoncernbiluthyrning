@@ -4410,3 +4410,129 @@ java.lang.IllegalArgumentException: Car does not exist
 2025-05-06 17:04:09,954 [http-nio-9090-exec-3] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
 2025-05-06 17:04:09,990 [http-nio-9090-exec-3] WARN  org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Resolved [com.example.wigellkoncernbiluthyrning.exceptions.IncorrectFormException: Car does not exist]
 2025-05-06 17:04:31,522 [http-nio-9090-exec-4] WARN  org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Resolved [com.example.wigellkoncernbiluthyrning.exceptions.IncorrectFormException: Customer does not exist]
+2025-05-07 16:29:22,412 [main] INFO  org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest]: OrderRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-07 16:29:22,528 [main] INFO  org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication for test class com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest
+2025-05-07 16:29:22,603 [main] INFO  org.springframework.boot.devtools.restart.RestartApplicationListener - Restart disabled due to context in which it is running
+2025-05-07 16:29:22,809 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-05-07 16:29:22,857 [main] INFO  com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest - Starting OrderRepositoryTest using Java 24 with PID 32824 (started by marc_ in C:\Users\marc_\IdeaProjects\wigellkoncernbiluthyrning)
+2025-05-07 16:29:22,861 [main] INFO  com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-07 16:29:23,217 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-07 16:29:23,282 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
+2025-05-07 16:29:23,330 [main] INFO  org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+2025-05-07 16:29:23,408 [main] INFO  org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:2d7c6600-a799-4f01-ac27-934ab827f5d8;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-05-07 16:29:23,645 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-07 16:29:23,700 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-05-07 16:29:23,731 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-05-07 16:29:24,004 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-07 16:29:24,084 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@3d8d970e']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-07 16:29:24,826 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-07 16:29:24,867 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-07 16:29:25,227 [main] INFO  com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest - Started OrderRepositoryTest in 2.632 seconds (process running for 4.02)
+2025-05-07 16:29:25,650 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-07 16:31:43,680 [main] INFO  org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest]: OrderRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-07 16:31:43,776 [main] INFO  org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication for test class com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest
+2025-05-07 16:31:43,835 [main] INFO  org.springframework.boot.devtools.restart.RestartApplicationListener - Restart disabled due to context in which it is running
+2025-05-07 16:31:44,019 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-05-07 16:31:44,056 [main] INFO  com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest - Starting OrderRepositoryTest using Java 24 with PID 27856 (started by marc_ in C:\Users\marc_\IdeaProjects\wigellkoncernbiluthyrning)
+2025-05-07 16:31:44,059 [main] INFO  com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-07 16:31:44,377 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-07 16:31:44,434 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 48 ms. Found 3 JPA repository interfaces.
+2025-05-07 16:31:44,478 [main] INFO  org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+2025-05-07 16:31:44,546 [main] INFO  org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:3f8a2d08-edbe-493f-9011-899bcc00a22e;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-05-07 16:31:44,753 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-07 16:31:44,791 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-05-07 16:31:44,813 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-05-07 16:31:45,051 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-07 16:31:45,123 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@6987a133']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-07 16:31:45,795 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-07 16:31:45,830 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-07 16:31:46,132 [main] INFO  com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest - Started OrderRepositoryTest in 2.304 seconds (process running for 3.533)
+2025-05-07 16:31:46,548 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-07 16:36:30,943 [main] INFO  org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest]: OrderRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-07 16:36:31,051 [main] INFO  org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication for test class com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest
+2025-05-07 16:36:31,135 [main] INFO  org.springframework.boot.devtools.restart.RestartApplicationListener - Restart disabled due to context in which it is running
+2025-05-07 16:36:31,330 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-05-07 16:36:31,374 [main] INFO  com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest - Starting OrderRepositoryTest using Java 24 with PID 8504 (started by marc_ in C:\Users\marc_\IdeaProjects\wigellkoncernbiluthyrning)
+2025-05-07 16:36:31,377 [main] INFO  com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-07 16:36:31,688 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-07 16:36:31,753 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57 ms. Found 3 JPA repository interfaces.
+2025-05-07 16:36:31,811 [main] INFO  org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+2025-05-07 16:36:31,906 [main] INFO  org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:b326dc19-86ab-4708-93eb-df6b3403abd4;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-05-07 16:36:32,116 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-07 16:36:32,163 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-05-07 16:36:32,189 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-05-07 16:36:32,430 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-07 16:36:32,497 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@485deee1']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-07 16:36:33,234 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-07 16:36:33,272 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-07 16:36:33,642 [main] INFO  com.example.wigellkoncernbiluthyrning.repositories.OrderRepositoryTest - Started OrderRepositoryTest in 2.514 seconds (process running for 3.763)
+2025-05-07 16:38:21,813 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-07 22:49:52,324 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-07 have been deleted.
+2025-05-07 22:50:00,961 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-07 have been deleted.
+2025-05-07 22:57:23,630 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-07 have been deleted.
+2025-05-07 23:38:56,988 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-07 have been deleted.
+2025-05-07 23:50:25,957 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-07 have been deleted.
+2025-05-07 23:51:46,534 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-07 have been deleted.
+2025-05-07 23:54:56,376 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-07 have been deleted.
+2025-05-08 00:05:18,554 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-08 have been deleted.
+2025-05-08 00:34:27,718 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-08 have been deleted.
+2025-05-08 00:38:37,674 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-08 have been deleted.
+2025-05-08 00:43:30,976 [main] WARN  com.example.wigellkoncernbiluthyrning.services.OrderServiceImpl - All orders before 2025-05-08 have been deleted.
+2025-05-08 00:50:00,545 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-05-08 00:50:00,576 [restartedMain] INFO  com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication - Starting WigellkoncernbiluthyrningApplication using Java 24 with PID 29168 (C:\Users\marc_\IdeaProjects\wigellkoncernbiluthyrning\target\classes started by marc_ in C:\Users\marc_\IdeaProjects\wigellkoncernbiluthyrning)
+2025-05-08 00:50:00,579 [restartedMain] INFO  com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-08 00:50:00,610 [restartedMain] INFO  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-08 00:50:00,610 [restartedMain] INFO  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-08 00:50:01,097 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-08 00:50:01,141 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 3 JPA repository interfaces.
+2025-05-08 00:50:01,515 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 9090 (http)
+2025-05-08 00:50:01,526 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2025-05-08 00:50:01,527 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-08 00:50:01,527 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-08 00:50:01,558 [restartedMain] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-08 00:50:01,558 [restartedMain] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 948 ms
+2025-05-08 00:50:01,670 [restartedMain] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-08 00:50:01,719 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-05-08 00:50:01,749 [restartedMain] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-05-08 00:50:01,939 [restartedMain] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-08 00:50:01,962 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-08 00:50:02,098 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:wigell user=SA
+2025-05-08 00:50:02,099 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-08 00:50:02,148 [restartedMain] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-08 00:50:02,826 [restartedMain] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-08 00:50:02,865 [restartedMain] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-08 00:50:03,123 [restartedMain] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-08 00:50:03,145 [restartedMain] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2025-05-08 00:50:03,400 [restartedMain] INFO  org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:wigell'
+2025-05-08 00:50:03,452 [restartedMain] INFO  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-05-08 00:50:03,464 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9090"]
+2025-05-08 00:50:03,475 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 9090 (http) with context path '/'
+2025-05-08 00:50:03,480 [restartedMain] INFO  com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication - Started WigellkoncernbiluthyrningApplication in 3.146 seconds (process running for 3.88)

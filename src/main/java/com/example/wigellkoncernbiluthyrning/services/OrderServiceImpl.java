@@ -47,19 +47,23 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public void addOrder(Order order) {
-        String message = orderValidator.orderForm(order);
+        validateOrder(order);
+        Customer customer = customerRepository.findById(order.getCustomer().getId())
+                .orElseThrow(() -> new IncorrectFormException("Customer does not exist"));
+        Car car = carRepository.findById(order.getCar().getId())
+                .orElseThrow(() -> new IncorrectFormException("Car does not exist"));
+        order.setCustomer(customer);
+        order.setCar(car);
+        orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
+        orderRepository.save(order);
+        ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
+    }
+
+    private void validateOrder(Order order) {
+        String message = orderValidator.validateOrderEntries(order);
         if (!orderValidator.isValid()) {
             throw new IncorrectFormException(message);
         }
-            Customer customer = customerRepository.findById(order.getCustomer().getId())
-                    .orElseThrow(() -> new IncorrectFormException("Customer does not exist"));
-            Car car = carRepository.findById(order.getCar().getId())
-                    .orElseThrow(() -> new IncorrectFormException("Car does not exist"));
-            order.setCustomer(customer);
-            order.setCar(car);
-            orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
-            orderRepository.save(order);
-            ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
     }
 
     @Override
