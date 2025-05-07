@@ -12,7 +12,7 @@ public class OrderValidator {
     OrderRepository orderRepository;
     private boolean isValid;
 
-    public String orderForm(Order order) {
+    public String validateOrderEntries(Order order) {
 
         if (order.getStartDate() == null || order.getStartDate().toString().isBlank()) {
             isValid = false;
