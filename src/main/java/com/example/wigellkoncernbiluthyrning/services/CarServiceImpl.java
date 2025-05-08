@@ -1,14 +1,14 @@
 package com.example.wigellkoncernbiluthyrning.services;
 
 import com.example.wigellkoncernbiluthyrning.entities.Car;
-import com.example.wigellkoncernbiluthyrning.exceptions.CarDeleteException;
 import com.example.wigellkoncernbiluthyrning.exceptions.AvailableCarNotFoundException;
+import com.example.wigellkoncernbiluthyrning.exceptions.CarDeleteException;
 import com.example.wigellkoncernbiluthyrning.exceptions.CarNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +16,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
-//Anna, SCRUM-8
-
+// Anna, SCRUM-8
 @Service
 public class CarServiceImpl implements CarService {
 
+    private static final Logger CAR_LOGGER = LogManager.getLogger(CarServiceImpl.class);
     private final CarRepository carRepository;
     private final OrderRepository orderRepository;
     private final OrderService orderService;
-    private static final Logger CAR_LOGGER = LogManager.getLogger(CarServiceImpl.class);
 
     @Autowired
     public CarServiceImpl(CarRepository carRepository, OrderRepository orderRepository, OrderService orderService) {
@@ -50,11 +48,12 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car addCar(Car car) {
-        CAR_LOGGER.info("A new car was added to the database");
+        // Anna, SCRUM-8
         return carRepository.save(car);
     }
 
-    //Anna and Nicholas
+
+    // Anna and Nicho
     @Override
     public Car updateCar(Car car) {
         Long carId = car.getId();
@@ -66,18 +65,17 @@ public class CarServiceImpl implements CarService {
         existingCar.setModel(car.getModel());
         existingCar.setPricePerDay(car.getPricePerDay());
         existingCar.setRegistrationNumber(existingCar.getRegistrationNumber());
-        return carRepository.save(existingCar);
 
+        return carRepository.save(existingCar);
     }
 
-    //Anna and Nicho
+    // Anna and Nicho
     @Override
     public void removeCar(Long id) {
         Car car = carRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Car with id " + id + " not found"));
         CAR_LOGGER.info("Car with id:{} was removed from the database.", id);
 
         LocalDate today = LocalDate.now();
-
         boolean isBooked = orderRepository.isCarBookedToday(car, today);
         if (isBooked) {
             throw new CarDeleteException("Cannot delete a car with id " + id + " because it is currently booked");
@@ -86,7 +84,7 @@ public class CarServiceImpl implements CarService {
         carRepository.deleteById(id);
     }
 
-
+    //Martin
     @Override
     public List<Car> getAvailableCarsToday() {
         List<Car> cars = carRepository.findAll();

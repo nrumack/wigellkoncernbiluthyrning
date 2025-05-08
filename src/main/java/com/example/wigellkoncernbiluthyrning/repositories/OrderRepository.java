@@ -23,7 +23,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     void deleteOrderByReturnDateBefore(LocalDate givenDate);
 
-    @Query("SELECT COUNT(o) > 0 FROM Order o WHERE o.car = :car AND o.startDate <= :today AND o.returnDate > :today AND o.active = true")
+    @Query("SELECT COUNT(o) > 0 FROM Order o WHERE o.car = :car AND o.startDate <= :today AND o.returnDate >= :today AND o.active = true")
     boolean isCarBookedToday(@Param("car") Car car, @Param("today") LocalDate today);
 
 

@@ -23,7 +23,7 @@ public class CarController {
 
     @GetMapping("/cars")
     public ResponseEntity<List<Car>> getAvailableCars() {
-        return ResponseEntity.ok(carServiceImpl.getAvailableCars());
+        return ResponseEntity.ok(carServiceImpl.getAvailableCarsToday());
     }
 }
 
