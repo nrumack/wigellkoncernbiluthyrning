@@ -53,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new AccessDeniedException("You are not authorized to update this");
         }
 
-        CUSTOMER_LOGGER.info("Details for customer with id {} have been updated.", customerDetails.getId());
+        CUSTOMER_LOGGER.info("Details for customer with id:{} have been updated.", customerDetails.getId());
         Customer existingCustomer = customerRepository.findOptionalBySocialSecurityNumber(loggedInCustomer).orElseThrow(()-> new CustomerNotFoundException(loggedInCustomer));
 
         existingCustomer.setFirstName(customerDetails.getFirstName());
@@ -74,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         customerRepository.deleteById(id);
-        CUSTOMER_LOGGER.warn("Customer with id {} was removed from the database", id);
+        CUSTOMER_LOGGER.info("Customer with id:{} was removed from the database", id);
     }
 
 }
