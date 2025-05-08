@@ -29,7 +29,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getAvailableCars() {
-        List<Car> cars = carRepository.findByBookedFalseAndInServiceFalse();
+        List<Car> cars = carRepository.findByInServiceFalse();
         if (cars.isEmpty()) {
             throw new AvailableCarNotFoundException();
         }
