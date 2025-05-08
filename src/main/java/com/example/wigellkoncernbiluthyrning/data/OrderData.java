@@ -67,16 +67,18 @@ public class OrderData implements CommandLineRunner {
     private void createOrder(Customer customer, Car car, LocalDate startDate, LocalDate returnDate) {
         long days = ChronoUnit.DAYS.between(startDate, returnDate);
         double cost = car.getPricePerDay() * days;
-
+    
         Order order = new Order();
         order.setCustomer(customer);
         order.setCar(car);
         order.setStartDate(startDate);
         order.setReturnDate(returnDate);
         order.setTotalCost((int) cost);
-
+    
+        order.setActive(!startDate.isAfter(LocalDate.now()) && !returnDate.isBefore(LocalDate.now()));
+    
         orderRepository.save(order);
-
+    
         car.setBooked(true);
         carRepository.save(car);
     }

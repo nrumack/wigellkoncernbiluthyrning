@@ -17,4 +17,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     Car findCarById(Long id);
 
     Optional<Car> findByRegistrationNumber(String registrationNumber);
+
+    List<Car> findByInServiceFalse();
 }

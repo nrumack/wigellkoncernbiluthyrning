@@ -88,35 +88,35 @@ public class OrderServiceImpl implements OrderService {
         return activeOrders;
     }
 
-@Override
-public List<Order> orders(LocalDate currentDate, Principal principal) {
-    List<Order> pastOrders = orderRepository.findOrderByReturnDateBefore(currentDate);
-    String userName = principal.getName();
-
-    boolean isAdmin = SecurityContextHolder.getContext().getAuthentication()
-            .getAuthorities().stream()
-            .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
-
-    if (isAdmin) {
-        if (pastOrders.isEmpty()) {
-            throw new NoContentException("There were no past orders to display");
+    @Override
+    public List<Order> orders(LocalDate currentDate, Principal principal) {
+        List<Order> allOrders = orderRepository.findAll();
+        String userName = principal.getName();
+    
+        boolean isAdmin = SecurityContextHolder.getContext().getAuthentication()
+                .getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+    
+        if (isAdmin) {
+            if (allOrders.isEmpty()) {
+                throw new NoContentException("There were no orders to display");
+            }
+            return allOrders;
         }
-        return pastOrders;
-    }
-
-    List<Order> filteredOrderList = new ArrayList<>();
-    for (Order order : pastOrders) {
-        if (order.getCustomer().getSocialSecurityNumber().equals(userName)) {
-            filteredOrderList.add(order);
+    
+        List<Order> filteredOrderList = new ArrayList<>();
+        for (Order order : allOrders) {
+            if (order.getCustomer().getSocialSecurityNumber().equals(userName)) {
+                filteredOrderList.add(order);
+            }
         }
+    
+        if (filteredOrderList.isEmpty()) {
+            throw new NoContentException("There were no orders to display");
+        }
+    
+        return filteredOrderList;
     }
-
-    if (filteredOrderList.isEmpty()) {
-        throw new NoContentException("There were no past orders to display");
-    }
-
-    return filteredOrderList;
-}
 
     @Override
     public void deleteById(Long id) {
