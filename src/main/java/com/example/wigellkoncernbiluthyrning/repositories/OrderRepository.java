@@ -1,7 +1,10 @@
 package com.example.wigellkoncernbiluthyrning.repositories;
 
+import com.example.wigellkoncernbiluthyrning.entities.Car;
 import com.example.wigellkoncernbiluthyrning.entities.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +22,12 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     void deleteById(@NonNull Long id);
 
     void deleteOrderByReturnDateBefore(LocalDate givenDate);
+
+    @Query("SELECT COUNT(o) > 0 FROM Order o WHERE o.car = :car AND o.startDate <= :today AND o.returnDate > :today AND o.active = true")
+    boolean isCarBookedToday(@Param("car") Car car, @Param("today") LocalDate today);
+
+
+
+
+
 }

@@ -8,6 +8,7 @@ import java.util.List;
 public interface CarService {
     List<Car> getAllCars();
     List<Car> getAvailableCars();
+    List<Car> getAvailableCarsToday();
     Car addCar(Car car);
     Car updateCar(Car car);
     void removeCar(Long id);

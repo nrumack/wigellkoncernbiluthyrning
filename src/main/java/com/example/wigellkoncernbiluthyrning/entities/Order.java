@@ -105,7 +105,8 @@ public class Order {
         return active;
     }
 
-    public void setActive(boolean orderCancelled) {
-        this.active = orderCancelled;
+    public void setActive(boolean active) {
+        this.active = active;
     }
+    
 }
