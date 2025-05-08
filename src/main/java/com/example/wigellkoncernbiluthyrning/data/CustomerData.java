@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 //Anna, scrum-27
+
+@org.springframework.core.annotation.Order(0)
 @Component
 public class CustomerData implements CommandLineRunner {
     private final CustomerRepository customerRepository;

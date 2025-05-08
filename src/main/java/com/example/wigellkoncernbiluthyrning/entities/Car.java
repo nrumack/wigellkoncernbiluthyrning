@@ -26,9 +26,6 @@ public class Car {
     @Column(name = "price_per_day")
     private double pricePerDay;
 
-    private boolean booked;
-    private boolean inService;
-
     @OneToMany(mappedBy = "car")
     private List<Order> orders;
 
@@ -39,8 +36,6 @@ public class Car {
         this.model = model;
         this.registrationNumber = registrationNumber;
         this.pricePerDay = pricePerDay;
-        this.booked = booked;
-        this.inService = inService;
     }
 
     public Long getId() {
@@ -72,18 +67,6 @@ public class Car {
     }
     public void setPricePerDay(double pricePerDay) {
         this.pricePerDay = pricePerDay;
-    }
-    public boolean isBooked() {
-        return booked;
-    }
-    public void setBooked(boolean booked) {
-        this.booked = booked;
-    }
-    public boolean isInService() {
-        return inService;
-    }
-    public void setInService(boolean inService) {
-        this.inService = inService;
     }
 
 }

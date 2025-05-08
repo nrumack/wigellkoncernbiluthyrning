@@ -10,7 +10,7 @@ import com.example.wigellkoncernbiluthyrning.entities.Car;
 import java.util.List;
 
 // Anna, SCRUM-9
-@Controller
+@RestController
 @RequestMapping("/api/v1")
 public class CarController {
 
