@@ -6,6 +6,8 @@ import com.example.wigellkoncernbiluthyrning.exceptions.CarDeleteException;
 import com.example.wigellkoncernbiluthyrning.exceptions.CarNotFoundException;
 import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.List;
 @Service
 public class CarServiceImpl implements CarService {
 
+    private static final Logger CAR_LOGGER = LogManager.getLogger(CarServiceImpl.class);
     private final CarRepository carRepository;
     private final OrderRepository orderRepository;
     private final OrderService orderService;
@@ -49,11 +52,14 @@ public class CarServiceImpl implements CarService {
         return carRepository.save(car);
     }
 
+
     // Anna and Nicho
     @Override
     public Car updateCar(Car car) {
         Long carId = car.getId();
+
         Car existingCar = carRepository.findById(carId).orElseThrow(() -> new CarNotFoundException(carId));
+        CAR_LOGGER.info("Car with id:{} was updated", carId);
 
         existingCar.setMake(car.getMake());
         existingCar.setModel(car.getModel());
@@ -67,6 +73,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public void removeCar(Long id) {
         Car car = carRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Car with id " + id + " not found"));
+        CAR_LOGGER.info("Car with id:{} was removed from the database.", id);
 
         LocalDate today = LocalDate.now();
         boolean isBooked = orderRepository.isCarBookedToday(car, today);

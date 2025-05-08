@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+// Marc
 @ExtendWith(MockitoExtension.class)
 class OrderRepositoryTest {
 
@@ -35,22 +36,16 @@ class OrderRepositoryTest {
     @Test
     void findByReturnDateGreaterThanEqual() {
 
+        // Given
         Principal principal = () -> "19201101-8899";
 
-        System.out.println("Principle name" + principal.getName());
-
-        // Given
         Customer customer = new Customer();
         customer.setSocialSecurityNumber("19201101-8899");
-
-        System.out.println("customer SSN" + customer.getSocialSecurityNumber());
 
         Order order1 = new Order();
         order1.setReturnDate(today);
         order1.setCustomer(customer);
         order1.setActive(true);
-
-        System.out.println("order 1 active" + order1.isActive());
 
         Order order2 = new Order();
         order2.setReturnDate(tomorrow);
