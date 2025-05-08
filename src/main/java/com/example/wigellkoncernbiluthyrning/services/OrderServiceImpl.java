@@ -57,7 +57,9 @@ public class OrderServiceImpl implements OrderService {
         order.setCar(car);
         orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
         orderRepository.save(order);
-        ORDER_LOGGER.info("A new order with id {} was added to the database.", order.getId());
+        ORDER_LOGGER.info("[{} {}, id:{}] added a new order with id:{} to the database.",
+                order.getCustomer().getFirstName(), order.getCustomer().getLastName(),
+                order.getCustomer().getId(), order.getId());
     }
 
     private void validateOrder(Order order) {
@@ -124,7 +126,7 @@ public class OrderServiceImpl implements OrderService {
             throw new OrderNotFoundException("Order with id " + id + " does not exist.");
         }
         orderRepository.deleteById(id);
-        ORDER_LOGGER.warn("Order with id {} was deleted.", id);
+        ORDER_LOGGER.info("Order with id:{} was deleted.", id);
     }
 
     @Transactional
@@ -135,7 +137,7 @@ public class OrderServiceImpl implements OrderService {
             throw new NoContentException("There were no orders to delete");
         }
         orderRepository.deleteOrderByReturnDateBefore(givenDate);
-        ORDER_LOGGER.warn("All orders before {} have been deleted.", givenDate);
+        ORDER_LOGGER.info("All orders before {} have been deleted.", givenDate);
     }
 
     @Override
@@ -148,7 +150,7 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setActive(false);
         orderRepository.save(order);
-        ORDER_LOGGER.info("Order with id {} has been cancelled", id);
+        ORDER_LOGGER.info("Order with id:{} has been cancelled", id);
     }
 
     @Transactional

@@ -59,7 +59,7 @@ public class CarServiceImpl implements CarService {
         Long carId = car.getId();
 
         Car existingCar = carRepository.findById(carId).orElseThrow(()-> new CarNotFoundException(carId));
-        CAR_LOGGER.info("Car with id {} was updated", carId);
+        CAR_LOGGER.info("Car with id:{} was updated", carId);
 
         existingCar.setMake(car.getMake());
         existingCar.setModel(car.getModel());
@@ -72,9 +72,10 @@ public class CarServiceImpl implements CarService {
     //Anna and Nicho
     @Override
     public void removeCar(Long id) {
-        Car car = carRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Car with id " + id + " not found"));
-        CAR_LOGGER.warn("Car with id {} was removed from the database.", id);
-
+        Car car = carRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Car with id " + id + " not found"));
+        CAR_LOGGER.info("Car with id:{} was removed from the database.", id);
+        if (car.isBooked()) {
+            throw new CarDeleteException("Cannot delete a car with id " + id + " because it is booked");
         LocalDate today = LocalDate.now();
 
         boolean isBooked = orderRepository.isCarBookedToday(car, today);
