@@ -7,6 +7,7 @@ import com.example.wigellkoncernbiluthyrning.repositories.CarRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.CustomerRepository;
 import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -15,7 +16,9 @@ import java.util.Optional;
 
 //Anna SCRUM-45
 
+@org.springframework.core.annotation.Order(2)
 @Component
+@DependsOn({"carData", "customerData"})
 public class OrderData implements CommandLineRunner {
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
@@ -74,12 +77,8 @@ public class OrderData implements CommandLineRunner {
         order.setStartDate(startDate);
         order.setReturnDate(returnDate);
         order.setTotalCost((int) cost);
-    
-        order.setActive(!startDate.isAfter(LocalDate.now()) && !returnDate.isBefore(LocalDate.now()));
-    
+   
         orderRepository.save(order);
-    
-        car.setBooked(true);
-        carRepository.save(car);
     }
+    
 }

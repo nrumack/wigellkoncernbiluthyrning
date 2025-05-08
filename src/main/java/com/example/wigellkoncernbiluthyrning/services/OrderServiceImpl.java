@@ -150,4 +150,16 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.save(order);
         ORDER_LOGGER.info("Order with id {} has been cancelled", id);
     }
+
+    @Transactional
+        public void updateOrderStatuses() {
+        LocalDate today = LocalDate.now();
+        List<Order> orders = orderRepository.findAll();
+        for (Order order : orders) {
+            if (order.isActive() && !order.getReturnDate().isAfter(today)) {
+                order.setActive(false);
+                orderRepository.save(order);
+            }
+    }
+}
 }

@@ -20,4 +20,6 @@ public interface OrderService {
     void deleteOrdersBeforeGivenDate(LocalDate givenDate);
 
     void cancelOrder(Long id, Principal principal);
+
+    void updateOrderStatuses();
 }
