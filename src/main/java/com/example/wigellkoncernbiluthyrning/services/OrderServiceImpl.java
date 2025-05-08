@@ -16,6 +16,7 @@ import com.example.wigellkoncernbiluthyrning.validators.OrderValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,32 +72,51 @@ public class OrderServiceImpl implements OrderService {
         List<Order> currentOrders = orderRepository.findByReturnDateGreaterThanEqual(currentDate);
         List<Order> activeOrders = new ArrayList<>();
         String userName = principal.getName();
+    
+        boolean isAdmin = userName.equals("admin");
+    
         for (Order order : currentOrders) {
-            if (order.isActive() && order.getCustomer().getSocialSecurityNumber().equals(userName)) {
+            if (order.isActive() && (isAdmin || order.getCustomer().getSocialSecurityNumber().equals(userName))) {
                 activeOrders.add(order);
             }
         }
+    
         if (activeOrders.isEmpty()) {
             throw new NoContentException("There are no active orders to display");
         }
+    
         return activeOrders;
     }
 
-    @Override
-    public List<Order> orders(LocalDate currentDate, Principal principal) {
-        List<Order> pastOrders = orderRepository.findOrderByReturnDateBefore(currentDate);
-        List<Order> filteredOrderList = new ArrayList<>();
-        String userName = principal.getName();
-        for (Order order : pastOrders) {
-            if (order.getCustomer().getSocialSecurityNumber().equals(userName)) {
-                filteredOrderList.add(order);
-            }
-        }
+@Override
+public List<Order> orders(LocalDate currentDate, Principal principal) {
+    List<Order> pastOrders = orderRepository.findOrderByReturnDateBefore(currentDate);
+    String userName = principal.getName();
+
+    boolean isAdmin = SecurityContextHolder.getContext().getAuthentication()
+            .getAuthorities().stream()
+            .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+
+    if (isAdmin) {
         if (pastOrders.isEmpty()) {
             throw new NoContentException("There were no past orders to display");
         }
-        return filteredOrderList;
+        return pastOrders;
     }
+
+    List<Order> filteredOrderList = new ArrayList<>();
+    for (Order order : pastOrders) {
+        if (order.getCustomer().getSocialSecurityNumber().equals(userName)) {
+            filteredOrderList.add(order);
+        }
+    }
+
+    if (filteredOrderList.isEmpty()) {
+        throw new NoContentException("There were no past orders to display");
+    }
+
+    return filteredOrderList;
+}
 
     @Override
     public void deleteById(Long id) {

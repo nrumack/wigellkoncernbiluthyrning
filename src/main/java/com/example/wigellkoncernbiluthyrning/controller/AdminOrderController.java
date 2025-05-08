@@ -1,11 +1,11 @@
 package com.example.wigellkoncernbiluthyrning.controller;
 
 import com.example.wigellkoncernbiluthyrning.entities.Order;
+import com.example.wigellkoncernbiluthyrning.services.CustomerService;
 import com.example.wigellkoncernbiluthyrning.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -19,8 +19,9 @@ public class AdminOrderController {
 
     private final OrderService orderService;
 
+
     @Autowired
-    public AdminOrderController(OrderService orderService) {
+    public AdminOrderController(OrderService orderService, CustomerService customerService) {
         this.orderService = orderService;
     }
 
@@ -46,4 +47,5 @@ public class AdminOrderController {
         orderService.deleteOrdersBeforeGivenDate(date);
         return ResponseEntity.ok("Orders before " + date + " have been deleted");
     }
+
 }
