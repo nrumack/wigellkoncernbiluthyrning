@@ -53,12 +53,13 @@ public class CarServiceImpl implements CarService {
         CAR_LOGGER.info("A new car was added to the database");
         return carRepository.save(car);
     }
+
     //Anna and Nicholas
     @Override
     public Car updateCar(Car car) {
         Long carId = car.getId();
 
-        Car existingCar = carRepository.findById(carId).orElseThrow(()-> new CarNotFoundException(carId));
+        Car existingCar = carRepository.findById(carId).orElseThrow(() -> new CarNotFoundException(carId));
         CAR_LOGGER.info("Car with id:{} was updated", carId);
 
         existingCar.setMake(car.getMake());
@@ -72,10 +73,9 @@ public class CarServiceImpl implements CarService {
     //Anna and Nicho
     @Override
     public void removeCar(Long id) {
-        Car car = carRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Car with id " + id + " not found"));
+        Car car = carRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Car with id " + id + " not found"));
         CAR_LOGGER.info("Car with id:{} was removed from the database.", id);
-        if (car.isBooked()) {
-            throw new CarDeleteException("Cannot delete a car with id " + id + " because it is booked");
+
         LocalDate today = LocalDate.now();
 
         boolean isBooked = orderRepository.isCarBookedToday(car, today);
@@ -92,14 +92,14 @@ public class CarServiceImpl implements CarService {
         List<Car> cars = carRepository.findAll();
         List<Car> availableCars = new ArrayList<>();
         LocalDate today = LocalDate.now();
-    
+
         for (Car car : cars) {
             boolean isBooked = orderRepository.isCarBookedToday(car, today);
             if (!isBooked) {
                 availableCars.add(car);
             }
         }
-    
+
         return availableCars;
     }
 }
