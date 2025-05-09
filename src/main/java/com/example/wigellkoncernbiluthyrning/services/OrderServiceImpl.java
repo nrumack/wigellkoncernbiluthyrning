@@ -53,6 +53,10 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new IncorrectFormException("Customer does not exist"));
         Car car = carRepository.findById(order.getCar().getId())
                 .orElseThrow(() -> new IncorrectFormException("Car does not exist"));
+
+        if (orderRepository.isCarBookedDuringPeriod(car, order.getStartDate(), order.getReturnDate())) {
+        throw new IncorrectFormException("Car is already booked during this period");
+}
         order.setCustomer(customer);
         order.setCar(car);
         orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
