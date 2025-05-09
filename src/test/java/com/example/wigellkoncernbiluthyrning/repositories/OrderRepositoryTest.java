@@ -87,7 +87,7 @@ class OrderRepositoryTest {
         when(orderRepository.findOrderByReturnDateBefore(today)).thenReturn(orders);
 
         // When
-        orderServiceImpl.orders(today, principal);
+        orderServiceImpl.pastOrders(today, principal);
 
         // Then
         verify(orderRepository).findOrderByReturnDateBefore(any(LocalDate.class));

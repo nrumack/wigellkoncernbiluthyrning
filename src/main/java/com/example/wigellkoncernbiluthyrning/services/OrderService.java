@@ -13,7 +13,7 @@ public interface OrderService {
 
     List<Order> activeOrders(LocalDate currentDate, Principal principal);
 
-    List<Order> orders(LocalDate currentDate, Principal principal);
+    List<Order> pastOrders(LocalDate currentDate, Principal principal);
 
     void deleteById(Long id);
 

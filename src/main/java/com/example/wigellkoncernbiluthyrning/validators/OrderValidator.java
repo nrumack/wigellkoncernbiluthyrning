@@ -1,7 +1,6 @@
 package com.example.wigellkoncernbiluthyrning.validators;
 
 import com.example.wigellkoncernbiluthyrning.entities.Order;
-import com.example.wigellkoncernbiluthyrning.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -9,7 +8,6 @@ import java.time.LocalDate;
 // Marc
 @Service
 public class OrderValidator {
-    OrderRepository orderRepository;
     private boolean isValid;
 
     public String validateOrderEntries(Order order) {

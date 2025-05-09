@@ -57,11 +57,10 @@ public class OrderServiceImpl implements OrderService {
         order.setCar(car);
         orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
         orderRepository.save(order);
-        ORDER_LOGGER.info("[{} {}, id:{}] added a new order with id:{} to the database.",
+        ORDER_LOGGER.info("[{} {}, id:{}] added [Order, id:{}] to the database.",
                 order.getCustomer().getFirstName(), order.getCustomer().getLastName(),
                 order.getCustomer().getId(), order.getId());
     }
-
     private void validateOrder(Order order) {
         String message = orderValidator.validateOrderEntries(order);
         if (!orderValidator.isValid()) {
@@ -74,49 +73,45 @@ public class OrderServiceImpl implements OrderService {
         List<Order> currentOrders = orderRepository.findByReturnDateGreaterThanEqual(currentDate);
         List<Order> activeOrders = new ArrayList<>();
         String userName = principal.getName();
-    
+
         boolean isAdmin = userName.equals("admin");
-    
+
         for (Order order : currentOrders) {
             if (order.isActive() && (isAdmin || order.getCustomer().getSocialSecurityNumber().equals(userName))) {
                 activeOrders.add(order);
             }
         }
-    
         if (activeOrders.isEmpty()) {
             throw new NoContentException("There are no active orders to display");
         }
-    
         return activeOrders;
     }
 
     @Override
-    public List<Order> orders(LocalDate currentDate, Principal principal) {
-        List<Order> allOrders = orderRepository.findAll();
+    public List<Order> pastOrders(LocalDate currentDate, Principal principal) {
+        List<Order> allPastOrders = orderRepository.findOrderByReturnDateBefore(currentDate);
         String userName = principal.getName();
-    
+
         boolean isAdmin = SecurityContextHolder.getContext().getAuthentication()
                 .getAuthorities().stream()
                 .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
-    
+
         if (isAdmin) {
-            if (allOrders.isEmpty()) {
+            if (allPastOrders.isEmpty()) {
                 throw new NoContentException("There were no orders to display");
             }
-            return allOrders;
+            return allPastOrders;
         }
-    
+
         List<Order> filteredOrderList = new ArrayList<>();
-        for (Order order : allOrders) {
+        for (Order order : allPastOrders) {
             if (order.getCustomer().getSocialSecurityNumber().equals(userName)) {
                 filteredOrderList.add(order);
             }
         }
-    
         if (filteredOrderList.isEmpty()) {
             throw new NoContentException("There were no orders to display");
         }
-    
         return filteredOrderList;
     }
 
@@ -154,7 +149,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Transactional
-        public void updateOrderStatuses() {
+    public void updateOrderStatuses() {
         LocalDate today = LocalDate.now();
         List<Order> orders = orderRepository.findAll();
         for (Order order : orders) {
@@ -162,6 +157,6 @@ public class OrderServiceImpl implements OrderService {
                 order.setActive(false);
                 orderRepository.save(order);
             }
+        }
     }
-}
 }
