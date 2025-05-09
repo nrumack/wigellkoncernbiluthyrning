@@ -32,7 +32,7 @@ public class AdminOrderController {
 
     @GetMapping("/orders")
     public ResponseEntity<List<Order>> getPastOrders(Principal principal) {
-        return ResponseEntity.ok(orderService.orders(LocalDate.now(), principal));
+        return ResponseEntity.ok(orderService.pastOrders(LocalDate.now(), principal));
     }
 
     @DeleteMapping("/removeorder/{id}")

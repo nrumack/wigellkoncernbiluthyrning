@@ -12,7 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
-import org.springframework.security.access.AccessDeniedException;
 import java.util.List;
 
 
@@ -50,20 +49,15 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer updateCustomer(Customer customerDetails) {
         String loggedInCustomer = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        Optional<Customer> optionalCustomer = customerRepository.findOptionalBySocialSecurityNumber(loggedInCustomer);
+        Customer existingCustomer = customerRepository.findOptionalBySocialSecurityNumber(loggedInCustomer).orElseThrow(()-> new CustomerNotFoundException(loggedInCustomer));
 
-        if (optionalCustomer.isEmpty() || optionalCustomer.get().getId() != customerDetails.getId()) {
-            throw new AccessDeniedException("You are not authorized to update this");
-        }
-
-        Customer existingCustomer = optionalCustomer.get();
-        CUSTOMER_LOGGER.info("Details for customer with id:{} have been updated.", existingCustomer.getId());
 
         existingCustomer.setFirstName(customerDetails.getFirstName());
         existingCustomer.setLastName(customerDetails.getLastName());
         existingCustomer.setEmail(customerDetails.getEmail());
         existingCustomer.setPhone(customerDetails.getPhone());
 
+        CUSTOMER_LOGGER.info("Details for customer with id:{} have been updated.", customerDetails.getId());
         return customerRepository.save(existingCustomer);
     }
 

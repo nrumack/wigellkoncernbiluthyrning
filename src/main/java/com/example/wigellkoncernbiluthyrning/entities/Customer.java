@@ -3,7 +3,7 @@ package com.example.wigellkoncernbiluthyrning.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
