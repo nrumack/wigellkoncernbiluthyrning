@@ -1,6 +1,7 @@
 package com.example.wigellkoncernbiluthyrning.validators;
 
 import com.example.wigellkoncernbiluthyrning.entities.Order;
+import com.example.wigellkoncernbiluthyrning.exceptions.IncorrectFormException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -9,6 +10,13 @@ import java.time.LocalDate;
 @Service
 public class OrderValidator {
     private boolean isValid;
+
+    public void validateOrder(Order order) {
+        String message = validateOrderEntries(order);
+        if (!isValid()) {
+            throw new IncorrectFormException(message);
+        }
+    }
 
     public String validateOrderEntries(Order order) {
 
@@ -37,24 +45,14 @@ public class OrderValidator {
             return "The start date cannot be after the return date";
         }
 
-        /*if (order.getCustomer().getSocialSecurityNumber() == null || order.getCustomer().getSocialSecurityNumber().isBlank()) {
-            isValid = false;
-            return "You need to enter your social security number";
-        }*/
-
-        /*if (order.getCustomer().getFirstName() == null || order.getCustomer().getFirstName().isBlank()) {
-            isValid = false;
-            return "You need to enter your first name";
-        }
-
-        if (order.getCustomer().getLastName() == null || order.getCustomer().getLastName().isBlank()) {
-            isValid = false;
-            return "You need to enter your last name";
-        }*/
-
         if (order.getCar().getId() == null) {
             isValid = false;
             return "You have not selected a car";
+        }
+
+        if (order.getCustomer().getId() == null) {
+            isValid = false;
+            return "You have not selected a customer";
         }
 
         isValid = true;

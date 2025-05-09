@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public void addOrder(Order order) {
-        validateOrder(order);
+        orderValidator.validateOrder(order);
         Customer customer = customerRepository.findById(order.getCustomer().getId())
                 .orElseThrow(() -> new IncorrectFormException("Customer does not exist"));
         Car car = carRepository.findById(order.getCar().getId())
@@ -65,12 +65,12 @@ public class OrderServiceImpl implements OrderService {
                 order.getCustomer().getFirstName(), order.getCustomer().getLastName(),
                 order.getCustomer().getId(), order.getId());
     }
-    private void validateOrder(Order order) {
+    /*private void validateOrder(Order order) {
         String message = orderValidator.validateOrderEntries(order);
         if (!orderValidator.isValid()) {
             throw new IncorrectFormException(message);
         }
-    }
+    }*/
 
     @Override
     public List<Order> activeOrders(LocalDate currentDate, Principal principal) {
