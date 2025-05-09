@@ -27,7 +27,17 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     boolean isCarBookedToday(@Param("car") Car car, @Param("today") LocalDate today);
 
 
-
+    @Query("""
+    SELECT COUNT(o) > 0 
+    FROM Order o 
+    WHERE o.car = :car 
+      AND o.active = true 
+      AND o.returnDate > :startDate 
+      AND o.startDate < :returnDate
+    """)
+    boolean isCarBookedDuringPeriod(@Param("car") Car car, 
+                                    @Param("startDate") LocalDate startDate, 
+                                    @Param("returnDate") LocalDate returnDate);
 
 
 }
