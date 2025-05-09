@@ -68,10 +68,11 @@ public class OrderData implements CommandLineRunner {
     }
 
     private void createOrder(Customer customer, Car car, LocalDate startDate, LocalDate returnDate) {
-        long days = ChronoUnit.DAYS.between(startDate, returnDate);
+        long days = ChronoUnit.DAYS.between(startDate, returnDate) + 1;
         double cost = car.getPricePerDay() * days;
     
         Order order = new Order();
+        order.setOrderPlaced(LocalDate.of(2025,1,1));
         order.setCustomer(customer);
         order.setCar(car);
         order.setStartDate(startDate);
