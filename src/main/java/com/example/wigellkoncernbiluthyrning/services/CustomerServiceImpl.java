@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import org.springframework.security.access.AccessDeniedException;
 import java.util.List;
 
 
@@ -48,12 +47,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer updateCustomer(Customer customerDetails) {
         String loggedInCustomer = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        if (!loggedInCustomer.equals(customerDetails.getSocialSecurityNumber())) {
-            throw new AccessDeniedException("You are not authorized to update this");
-        }
-
-        CUSTOMER_LOGGER.info("Details for customer with id:{} have been updated.", customerDetails.getId());
         Customer existingCustomer = customerRepository.findOptionalBySocialSecurityNumber(loggedInCustomer).orElseThrow(()-> new CustomerNotFoundException(loggedInCustomer));
 
         existingCustomer.setFirstName(customerDetails.getFirstName());
@@ -61,6 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
         existingCustomer.setEmail(customerDetails.getEmail());
         existingCustomer.setPhone(customerDetails.getPhone());
 
+        CUSTOMER_LOGGER.info("Details for customer with id:{} have been updated.", customerDetails.getId());
         return customerRepository.save(existingCustomer);
 
     }
