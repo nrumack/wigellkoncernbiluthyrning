@@ -57,11 +57,10 @@ public class OrderServiceImpl implements OrderService {
         order.setCar(car);
         orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
         orderRepository.save(order);
-        ORDER_LOGGER.info("[{} {}, id:{}] added a new order with id:{} to the database.",
+        ORDER_LOGGER.info("[{} {}, id:{}] added [Order, id:{}] to the database.",
                 order.getCustomer().getFirstName(), order.getCustomer().getLastName(),
                 order.getCustomer().getId(), order.getId());
     }
-
     private void validateOrder(Order order) {
         String message = orderValidator.validateOrderEntries(order);
         if (!orderValidator.isValid()) {
