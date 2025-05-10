@@ -31,7 +31,7 @@ public class Car {
 
     public Car() {}
 
-    public Car(String make, String model, String registrationNumber, double pricePerDay, boolean booked, boolean inService) {
+    public Car(String make, String model, String registrationNumber, double pricePerDay) {
         this.make = make;
         this.model = model;
         this.registrationNumber = registrationNumber;

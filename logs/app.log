@@ -12866,3 +12866,6 @@ Caused by: java.lang.ClassNotFoundException: com.example.wigellkoncernbiluthyrni
 2025-05-09 19:27:14,123 [SpringApplicationShutdownHook] WARN  org.springframework.beans.factory.support.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
 2025-05-09 19:27:14,123 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-05-09 19:27:14,124 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[32m2025-05-10 18:20:45,629 [main] INFO  com.example.wigellkoncernbiluthyrning.services.CarServiceImpl - Car with id:55 was removed from the database.
+[m[32m2025-05-10 18:20:45,636 [main] INFO  com.example.wigellkoncernbiluthyrning.services.CarServiceImpl - Car with id:99 was removed from the database.
+[m

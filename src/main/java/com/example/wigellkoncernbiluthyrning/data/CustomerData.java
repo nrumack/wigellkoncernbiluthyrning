@@ -27,9 +27,4 @@ public class CustomerData implements CommandLineRunner {
 
         }
     }
-
-//    private void addCustomer(String ssn, String firstName, String lastName, String email, String phone) {
-//        String password = ssn.substring(ssn.length() - 4);
-//        customerRepository.save(new Customer(ssn, firstName, lastName, email, phone, password));
-//    }
 }
