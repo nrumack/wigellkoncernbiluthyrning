@@ -12868,4 +12868,225 @@ Caused by: java.lang.ClassNotFoundException: com.example.wigellkoncernbiluthyrni
 2025-05-09 19:27:14,124 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
 [32m2025-05-10 18:20:45,629 [main] INFO  com.example.wigellkoncernbiluthyrning.services.CarServiceImpl - Car with id:55 was removed from the database.
 [m[32m2025-05-10 18:20:45,636 [main] INFO  com.example.wigellkoncernbiluthyrning.services.CarServiceImpl - Car with id:99 was removed from the database.
+[m[32m2025-05-10 19:17:47,226 [main] INFO  org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest]: CarIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[m[32m2025-05-10 19:17:47,275 [main] INFO  org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication for test class com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest
+[m[32m2025-05-10 19:17:47,335 [main] INFO  org.springframework.boot.devtools.restart.RestartApplicationListener - Restart disabled due to context in which it is running
+[m[32m2025-05-10 19:17:47,419 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+[m[32m2025-05-10 19:17:47,442 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Starting CarIntegrationTest using Java 23 with PID 6503 (started by annarunnander in /Users/annarunnander/IdeaProjects/wigellkoncernbiluthyrning5)
+[m[32m2025-05-10 19:17:47,443 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - No active profile set, falling back to 1 default profile: "default"
+[m[32m2025-05-10 19:17:47,746 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[m[32m2025-05-10 19:17:47,771 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 3 JPA repository interfaces.
+[m[32m2025-05-10 19:17:47,972 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[m[32m2025-05-10 19:17:47,998 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+[m[32m2025-05-10 19:17:48,013 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[m[32m2025-05-10 19:17:48,134 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[m[32m2025-05-10 19:17:48,148 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[m[32m2025-05-10 19:17:48,233 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:wigell user=SA
+[m[32m2025-05-10 19:17:48,234 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[m[32m2025-05-10 19:17:48,266 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[m[32m2025-05-10 19:17:48,685 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[m[32m2025-05-10 19:17:48,706 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-10 19:17:48,836 [main] INFO  org.springframework.data.jpa.repository.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[m[33;1m2025-05-10 19:17:49,304 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[m[32m2025-05-10 19:17:49,320 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+[m[32m2025-05-10 19:17:49,537 [main] INFO  org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:wigell'
+[m[32m2025-05-10 19:17:49,578 [main] INFO  org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+[m[32m2025-05-10 19:17:49,578 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[m[32m2025-05-10 19:17:49,579 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 1 ms
+[m[32m2025-05-10 19:17:49,590 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Started CarIntegrationTest in 2.259 seconds (process running for 3.031)
+[m[32m2025-05-10 19:17:49,919 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-10 19:17:49,920 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[m[32m2025-05-10 19:17:49,921 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[m[32m2025-05-10 21:15:19,995 [main] INFO  org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest]: CarIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[m[32m2025-05-10 21:15:20,045 [main] INFO  org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication for test class com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest
+[m[32m2025-05-10 21:15:20,107 [main] INFO  org.springframework.boot.devtools.restart.RestartApplicationListener - Restart disabled due to context in which it is running
+[m[32m2025-05-10 21:15:20,186 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+[m[32m2025-05-10 21:15:20,206 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Starting CarIntegrationTest using Java 23 with PID 6820 (started by annarunnander in /Users/annarunnander/IdeaProjects/wigellkoncernbiluthyrning5)
+[m[32m2025-05-10 21:15:20,207 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - No active profile set, falling back to 1 default profile: "default"
+[m[32m2025-05-10 21:15:20,505 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[m[32m2025-05-10 21:15:20,532 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 3 JPA repository interfaces.
+[m[32m2025-05-10 21:15:20,727 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[m[32m2025-05-10 21:15:20,763 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+[m[32m2025-05-10 21:15:20,778 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[m[32m2025-05-10 21:15:20,894 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[m[32m2025-05-10 21:15:20,907 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[m[32m2025-05-10 21:15:20,994 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:wigell user=SA
+[m[32m2025-05-10 21:15:20,995 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[m[32m2025-05-10 21:15:21,024 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[m[32m2025-05-10 21:15:21,442 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[m[32m2025-05-10 21:15:21,462 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-10 21:15:21,591 [main] INFO  org.springframework.data.jpa.repository.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[m[33;1m2025-05-10 21:15:22,076 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[m[32m2025-05-10 21:15:22,090 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+[m[32m2025-05-10 21:15:22,311 [main] INFO  org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:wigell'
+[m[32m2025-05-10 21:15:22,353 [main] INFO  org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+[m[32m2025-05-10 21:15:22,354 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[m[32m2025-05-10 21:15:22,354 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+[m[32m2025-05-10 21:15:22,365 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Started CarIntegrationTest in 2.262 seconds (process running for 2.958)
+[m[32m2025-05-10 21:15:22,695 [main] INFO  com.example.wigellkoncernbiluthyrning.services.CarServiceImpl - Car with id:6 was removed from the database.
+[m[32m2025-05-10 21:15:22,769 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-10 21:15:22,770 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[m[32m2025-05-10 21:15:22,771 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[m[32m2025-05-10 21:23:25,520 [main] INFO  org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest]: CarIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[m[32m2025-05-10 21:23:25,571 [main] INFO  org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication for test class com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest
+[m[32m2025-05-10 21:23:25,630 [main] INFO  org.springframework.boot.devtools.restart.RestartApplicationListener - Restart disabled due to context in which it is running
+[m[32m2025-05-10 21:23:25,705 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+[m[32m2025-05-10 21:23:25,723 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Starting CarIntegrationTest using Java 23 with PID 6859 (started by annarunnander in /Users/annarunnander/IdeaProjects/wigellkoncernbiluthyrning5)
+[m[32m2025-05-10 21:23:25,724 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - No active profile set, falling back to 1 default profile: "default"
+[m[32m2025-05-10 21:23:26,019 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[m[32m2025-05-10 21:23:26,050 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 3 JPA repository interfaces.
+[m[32m2025-05-10 21:23:26,262 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[m[32m2025-05-10 21:23:26,288 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+[m[32m2025-05-10 21:23:26,303 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[m[32m2025-05-10 21:23:26,424 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[m[32m2025-05-10 21:23:26,437 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[m[32m2025-05-10 21:23:26,526 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:wigell user=SA
+[m[32m2025-05-10 21:23:26,527 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[m[32m2025-05-10 21:23:26,557 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[m[32m2025-05-10 21:23:26,983 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[m[32m2025-05-10 21:23:27,004 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-10 21:23:27,131 [main] INFO  org.springframework.data.jpa.repository.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[m[33;1m2025-05-10 21:23:27,667 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[m[32m2025-05-10 21:23:27,681 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+[m[32m2025-05-10 21:23:27,892 [main] INFO  org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:wigell'
+[m[32m2025-05-10 21:23:27,933 [main] INFO  org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+[m[32m2025-05-10 21:23:27,933 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[m[32m2025-05-10 21:23:27,934 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+[m[32m2025-05-10 21:23:27,945 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Started CarIntegrationTest in 2.319 seconds (process running for 2.985)
+[m[32m2025-05-10 21:23:28,277 [main] INFO  com.example.wigellkoncernbiluthyrning.services.CarServiceImpl - Car with id:6 was removed from the database.
+[m[32m2025-05-10 21:23:28,310 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-10 21:23:28,311 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[m[32m2025-05-10 21:23:28,312 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[m[32m2025-05-10 21:24:53,995 [main] INFO  org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest]: CarIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[m[32m2025-05-10 21:24:54,043 [main] INFO  org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication for test class com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest
+[m[32m2025-05-10 21:24:54,091 [main] INFO  org.springframework.boot.devtools.restart.RestartApplicationListener - Restart disabled due to context in which it is running
+[m[32m2025-05-10 21:24:54,158 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+[m[32m2025-05-10 21:24:54,177 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Starting CarIntegrationTest using Java 23 with PID 6876 (started by annarunnander in /Users/annarunnander/IdeaProjects/wigellkoncernbiluthyrning5)
+[m[32m2025-05-10 21:24:54,179 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - No active profile set, falling back to 1 default profile: "default"
+[m[32m2025-05-10 21:24:54,437 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[m[32m2025-05-10 21:24:54,464 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 3 JPA repository interfaces.
+[m[32m2025-05-10 21:24:54,661 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[m[32m2025-05-10 21:24:54,679 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+[m[32m2025-05-10 21:24:54,690 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[m[32m2025-05-10 21:24:54,794 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[m[32m2025-05-10 21:24:54,806 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[m[32m2025-05-10 21:24:54,886 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:wigell user=SA
+[m[32m2025-05-10 21:24:54,887 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[m[32m2025-05-10 21:24:54,917 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[m[32m2025-05-10 21:24:55,329 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[m[32m2025-05-10 21:24:55,349 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-10 21:24:55,482 [main] INFO  org.springframework.data.jpa.repository.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[m[33;1m2025-05-10 21:24:55,974 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[m[32m2025-05-10 21:24:55,988 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+[m[32m2025-05-10 21:24:56,204 [main] INFO  org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:wigell'
+[m[32m2025-05-10 21:24:56,246 [main] INFO  org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+[m[32m2025-05-10 21:24:56,246 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[m[32m2025-05-10 21:24:56,247 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+[m[32m2025-05-10 21:24:56,259 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Started CarIntegrationTest in 2.172 seconds (process running for 2.794)
+[m[32m2025-05-10 21:24:56,575 [main] INFO  com.example.wigellkoncernbiluthyrning.services.CarServiceImpl - Car with id:6 was removed from the database.
+[m[32m2025-05-10 21:24:56,610 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-10 21:24:56,611 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[m[32m2025-05-10 21:24:56,616 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[m[32m2025-05-11 11:54:56,632 [main] INFO  org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest]: CarIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[m[32m2025-05-11 11:54:56,681 [main] INFO  org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication for test class com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest
+[m[32m2025-05-11 11:54:56,739 [main] INFO  org.springframework.boot.devtools.restart.RestartApplicationListener - Restart disabled due to context in which it is running
+[m[32m2025-05-11 11:54:56,814 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+[m[32m2025-05-11 11:54:56,832 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Starting CarIntegrationTest using Java 23 with PID 7209 (started by annarunnander in /Users/annarunnander/IdeaProjects/wigellkoncernbiluthyrning5)
+[m[32m2025-05-11 11:54:56,834 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - No active profile set, falling back to 1 default profile: "default"
+[m[32m2025-05-11 11:54:57,131 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[m[32m2025-05-11 11:54:57,158 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 3 JPA repository interfaces.
+[m[32m2025-05-11 11:54:57,350 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[m[32m2025-05-11 11:54:57,382 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+[m[32m2025-05-11 11:54:57,396 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[m[32m2025-05-11 11:54:57,515 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[m[32m2025-05-11 11:54:57,528 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[m[32m2025-05-11 11:54:57,615 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:wigell user=SA
+[m[32m2025-05-11 11:54:57,616 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[m[32m2025-05-11 11:54:57,646 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[m[32m2025-05-11 11:54:58,067 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[m[32m2025-05-11 11:54:58,088 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-11 11:54:58,214 [main] INFO  org.springframework.data.jpa.repository.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[m[33;1m2025-05-11 11:54:58,747 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[m[32m2025-05-11 11:54:58,761 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+[m[32m2025-05-11 11:54:58,982 [main] INFO  org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:wigell'
+[m[32m2025-05-11 11:54:59,022 [main] INFO  org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+[m[32m2025-05-11 11:54:59,022 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[m[32m2025-05-11 11:54:59,023 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 1 ms
+[m[32m2025-05-11 11:54:59,035 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Started CarIntegrationTest in 2.3 seconds (process running for 2.958)
+[m[32m2025-05-11 11:54:59,362 [main] INFO  com.example.wigellkoncernbiluthyrning.services.CarServiceImpl - Car with id:6 was removed from the database.
+[m[32m2025-05-11 11:54:59,398 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-11 11:54:59,399 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[m[32m2025-05-11 11:54:59,400 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[m[32m2025-05-11 12:22:04,608 [main] INFO  org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest]: CarIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[m[32m2025-05-11 12:22:04,659 [main] INFO  org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.wigellkoncernbiluthyrning.WigellkoncernbiluthyrningApplication for test class com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest
+[m[32m2025-05-11 12:22:04,721 [main] INFO  org.springframework.boot.devtools.restart.RestartApplicationListener - Restart disabled due to context in which it is running
+[m[32m2025-05-11 12:22:04,792 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+[m[32m2025-05-11 12:22:04,813 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Starting CarIntegrationTest using Java 23 with PID 7271 (started by annarunnander in /Users/annarunnander/IdeaProjects/wigellkoncernbiluthyrning5)
+[m[32m2025-05-11 12:22:04,815 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - No active profile set, falling back to 1 default profile: "default"
+[m[32m2025-05-11 12:22:05,113 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[m[32m2025-05-11 12:22:05,144 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 3 JPA repository interfaces.
+[m[32m2025-05-11 12:22:05,352 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[m[32m2025-05-11 12:22:05,378 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
+[m[32m2025-05-11 12:22:05,394 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[m[32m2025-05-11 12:22:05,513 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[m[32m2025-05-11 12:22:05,526 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[m[32m2025-05-11 12:22:05,612 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:wigell user=SA
+[m[32m2025-05-11 12:22:05,613 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[m[32m2025-05-11 12:22:05,644 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[m[32m2025-05-11 12:22:06,061 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[m[32m2025-05-11 12:22:06,082 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-11 12:22:06,212 [main] INFO  org.springframework.data.jpa.repository.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[m[33;1m2025-05-11 12:22:06,638 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[m[32m2025-05-11 12:22:06,652 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+[m[32m2025-05-11 12:22:06,852 [main] INFO  org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:wigell'
+[m[32m2025-05-11 12:22:06,894 [main] INFO  org.springframework.boot.test.mock.web.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+[m[32m2025-05-11 12:22:06,895 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+[m[32m2025-05-11 12:22:06,895 [main] INFO  org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 0 ms
+[m[32m2025-05-11 12:22:06,906 [main] INFO  com.example.wigellkoncernbiluthyrning.integration.CarIntegrationTest - Started CarIntegrationTest in 2.19 seconds (process running for 2.846)
+[m[32m2025-05-11 12:22:07,240 [main] INFO  com.example.wigellkoncernbiluthyrning.services.CarServiceImpl - Car with id:6 was removed from the database.
+[m[32m2025-05-11 12:22:07,317 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[m[32m2025-05-11 12:22:07,318 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[m[32m2025-05-11 12:22:07,319 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
 [m
