@@ -11,7 +11,5 @@ import java.util.Optional;
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
     Customer findBySocialSecurityNumber(String socialSecurityNumber);
     Optional<Customer> findOptionalBySocialSecurityNumber(String ssn);
-
-
     List<Customer> id(long id);
 }
