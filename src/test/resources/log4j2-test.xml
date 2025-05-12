@@ -1,0 +1,12 @@
+<Configuration status="OFF">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <ThresholdFilter level="OFF"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="OFF">
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>

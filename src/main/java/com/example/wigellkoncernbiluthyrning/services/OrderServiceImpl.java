@@ -65,12 +65,6 @@ public class OrderServiceImpl implements OrderService {
                 order.getCustomer().getFirstName(), order.getCustomer().getLastName(),
                 order.getCustomer().getId(), order.getId());
     }
-    /*private void validateOrder(Order order) {
-        String message = orderValidator.validateOrderEntries(order);
-        if (!orderValidator.isValid()) {
-            throw new IncorrectFormException(message);
-        }
-    }*/
 
     @Override
     public List<Order> activeOrders(LocalDate currentDate, Principal principal) {
