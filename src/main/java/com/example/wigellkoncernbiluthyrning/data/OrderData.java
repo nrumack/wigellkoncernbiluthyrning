@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
-//Anna SCRUM-45
+//Anna SCRUM-45, SCRUM-46
 
 @org.springframework.core.annotation.Order(2)
 @Component
@@ -64,6 +64,48 @@ public class OrderData implements CommandLineRunner {
             if (elin.isPresent() && car5.isPresent()) {
                 createOrder(elin.get(), car5.get(), LocalDate.now().minusDays(3), LocalDate.now());
             }
+            if (anna.isPresent() && car1.isPresent()) {
+                createOrder(anna.get(), car1.get(), LocalDate.of(2024, 1, 5), LocalDate.of(2024, 1, 10));
+            }
+            if (erik.isPresent() && car2.isPresent()) {
+                createOrder(erik.get(), car2.get(), LocalDate.of(2024, 2, 10), LocalDate.of(2024, 2, 11));
+            }
+            if (maria.isPresent() && car3.isPresent()) {
+                createOrder(maria.get(), car3.get(), LocalDate.of(2024, 3, 1), LocalDate.of(2024, 3, 6));
+            }
+            if (anna.isPresent() && car2.isPresent()) {
+                createOrder(anna.get(), car2.get(), LocalDate.of(2024, 4, 3), LocalDate.of(2024, 4, 10));
+            }
+            if (erik.isPresent() && car1.isPresent()) {
+                createOrder(erik.get(), car1.get(), LocalDate.of(2024, 5, 10), LocalDate.of(2024, 5, 12));
+            }
+            if (maria.isPresent() && car1.isPresent()) {
+                createOrder(maria.get(), car1.get(), LocalDate.of(2024, 6, 1), LocalDate.of(2024, 6, 4));
+            }
+
+            if (anna.isPresent() && car4.isPresent()) {
+                createOrder(anna.get(), car4.get(), LocalDate.now().minusDays(2), LocalDate.now().plusDays(2));
+            }
+            if (erik.isPresent() && car5.isPresent()) {
+                createOrder(erik.get(), car5.get(), LocalDate.now().minusDays(1), LocalDate.now().plusDays(4));
+            }
+            if (maria.isPresent() && car3.isPresent()) {
+                createOrder(maria.get(), car3.get(), LocalDate.now().minusDays(3), LocalDate.now().plusDays(1));
+            }
+
+            if (anna.isPresent() && car2.isPresent()) {
+                createOrder(anna.get(), car2.get(), LocalDate.now().plusDays(2), LocalDate.now().plusDays(3));
+            }
+            if (erik.isPresent() && car4.isPresent()) {
+                createOrder(erik.get(), car4.get(), LocalDate.now().plusDays(4), LocalDate.now().plusDays(9));
+            }
+            if (maria.isPresent() && car5.isPresent()) {
+                createOrder(maria.get(), car5.get(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
+            }
+            if (anna.isPresent() && car1.isPresent()) {
+                createOrder(anna.get(), car1.get(), LocalDate.now().plusDays(10), LocalDate.now().plusDays(13));
+            }
+
         }
     }
 
