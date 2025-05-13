@@ -24,6 +24,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 // Marc
@@ -47,13 +48,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional
     @Override
-    public void addOrder(Order order) {
+    public void addOrder(Order order, Principal principal) {
         orderValidator.validateOrder(order);
         Customer customer = customerRepository.findById(order.getCustomer().getId())
-                .orElseThrow(() -> new IncorrectFormException("Customer does not exist"));
+                .orElseThrow(() -> new IncorrectFormException("Customer does not exist in the database"));
+        if (!Objects.equals(customer.getSocialSecurityNumber(), principal.getName())) {
+            throw new UnauthorisedUserException("You cannot make a booking for someone else");
+        }
         Car car = carRepository.findById(order.getCar().getId())
-                .orElseThrow(() -> new IncorrectFormException("Car does not exist"));
-
+                .orElseThrow(() -> new IncorrectFormException("Car does not exist in the database"));
         if (orderRepository.isCarBookedDuringPeriod(car, order.getStartDate(), order.getReturnDate())) {
             throw new IncorrectFormException("Car is already booked during this period");
         }
