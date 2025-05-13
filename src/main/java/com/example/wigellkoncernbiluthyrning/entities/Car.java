@@ -26,7 +26,7 @@ public class Car {
     @Column(name = "price_per_day")
     private double pricePerDay;
 
-    @OneToMany(mappedBy = "car")
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
 
     public Car() {}
