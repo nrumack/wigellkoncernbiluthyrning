@@ -48,62 +48,47 @@ public class OrderData implements CommandLineRunner {
 
 
             if (anna.isPresent() && car1.isPresent()) {
-                createOrder(anna.get(), car1.get(), LocalDate.now().minusDays(10), LocalDate.now().minusDays(5));
+                createOrder(anna.get(), car1.get(), LocalDate.of(2025, 5, 10), LocalDate.of(2025, 5, 16));
             }
             if (erik.isPresent() && car2.isPresent()) {
-                createOrder(erik.get(), car2.get(), LocalDate.now().minusDays(3), LocalDate.now());
+                createOrder(erik.get(), car2.get(), LocalDate.of(2025, 5, 10), LocalDate.of(2025, 5, 17));
             }
             if (maria.isPresent() && car3.isPresent()) {
-                createOrder(maria.get(), car3.get(), LocalDate.now().minusDays(9), LocalDate.now().minusDays(8));
+                createOrder(maria.get(), car3.get(), LocalDate.of(2025, 5, 10), LocalDate.of(2025, 5, 18));
             }
-
             if (johan.isPresent() && car4.isPresent()) {
-                createOrder(johan.get(), car4.get(), LocalDate.now().minusDays(5), LocalDate.now().minusDays(1));
+                createOrder(johan.get(), car4.get(), LocalDate.of(2025, 5, 12), LocalDate.of(2025, 5, 16));
             }
-
             if (elin.isPresent() && car5.isPresent()) {
-                createOrder(elin.get(), car5.get(), LocalDate.now().minusDays(3), LocalDate.now());
-            }
-            if (anna.isPresent() && car1.isPresent()) {
-                createOrder(anna.get(), car1.get(), LocalDate.of(2024, 1, 5), LocalDate.of(2024, 1, 10));
-            }
-            if (erik.isPresent() && car2.isPresent()) {
-                createOrder(erik.get(), car2.get(), LocalDate.of(2024, 2, 10), LocalDate.of(2024, 2, 11));
-            }
-            if (maria.isPresent() && car3.isPresent()) {
-                createOrder(maria.get(), car3.get(), LocalDate.of(2024, 3, 1), LocalDate.of(2024, 3, 6));
-            }
-            if (anna.isPresent() && car2.isPresent()) {
-                createOrder(anna.get(), car2.get(), LocalDate.of(2024, 4, 3), LocalDate.of(2024, 4, 10));
-            }
-            if (erik.isPresent() && car1.isPresent()) {
-                createOrder(erik.get(), car1.get(), LocalDate.of(2024, 5, 10), LocalDate.of(2024, 5, 12));
-            }
-            if (maria.isPresent() && car1.isPresent()) {
-                createOrder(maria.get(), car1.get(), LocalDate.of(2024, 6, 1), LocalDate.of(2024, 6, 4));
+                createOrder(elin.get(), car5.get(), LocalDate.of(2025, 5, 10), LocalDate.of(2025, 5, 17));
             }
 
-            if (anna.isPresent() && car4.isPresent()) {
-                createOrder(anna.get(), car4.get(), LocalDate.now().minusDays(2), LocalDate.now().plusDays(2));
+            if (anna.isPresent() && car1.isPresent()) {
+                createOrder(anna.get(), car1.get(), LocalDate.of(2025, 3, 12), LocalDate.of(2025, 3, 17));
             }
-            if (erik.isPresent() && car5.isPresent()) {
-                createOrder(erik.get(), car5.get(), LocalDate.now().minusDays(1), LocalDate.now().plusDays(4));
+            if (johan.isPresent() && car5.isPresent()) {
+                createOrder(johan.get(), car5.get(), LocalDate.of(2025, 5, 1), LocalDate.of(2025, 5, 3));
+            }
+            if (anna.isPresent() && car2.isPresent()) {
+                createOrder(anna.get(), car2.get(), LocalDate.of(2025, 5, 7), LocalDate.of(2025, 5, 9));
             }
             if (maria.isPresent() && car3.isPresent()) {
-                createOrder(maria.get(), car3.get(), LocalDate.now().minusDays(3), LocalDate.now().plusDays(1));
+                createOrder(maria.get(), car3.get(), LocalDate.of(2025, 3, 13), LocalDate.of(2025, 3, 16));
             }
-
-            if (anna.isPresent() && car2.isPresent()) {
-                createOrder(anna.get(), car2.get(), LocalDate.now().plusDays(2), LocalDate.now().plusDays(3));
-            }
-            if (erik.isPresent() && car4.isPresent()) {
-                createOrder(erik.get(), car4.get(), LocalDate.now().plusDays(4), LocalDate.now().plusDays(9));
-            }
-            if (maria.isPresent() && car5.isPresent()) {
-                createOrder(maria.get(), car5.get(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
+            if (erik.isPresent() && car3.isPresent()) {
+                createOrder(erik.get(), car3.get(), LocalDate.of(2025, 5, 5), LocalDate.of(2025, 5, 6));
             }
             if (anna.isPresent() && car1.isPresent()) {
-                createOrder(anna.get(), car1.get(), LocalDate.now().plusDays(10), LocalDate.now().plusDays(13));
+                createOrder(anna.get(), car1.get(), LocalDate.of(2025, 5, 6), LocalDate.of(2025, 5, 8));
+            }
+            if (elin.isPresent() && car2.isPresent()) {
+                createOrder(elin.get(), car2.get(), LocalDate.of(2025, 5, 4), LocalDate.of(2025, 5, 8));
+            }
+            if (maria.isPresent() && car4.isPresent()) {
+                createOrder(maria.get(), car4.get(), LocalDate.of(2025, 5, 4), LocalDate.of(2025, 5, 5));
+            }
+            if (johan.isPresent() && car1.isPresent()) {
+                createOrder(johan.get(), car1.get(), LocalDate.of(2025, 5, 4), LocalDate.of(2025, 5, 8));
             }
 
         }
@@ -114,7 +99,8 @@ public class OrderData implements CommandLineRunner {
         double cost = car.getPricePerDay() * days;
     
         Order order = new Order();
-        order.setOrderPlaced(startDate);
+
+        order.setOrderPlaced(startDate.minusDays(1));
         order.setCustomer(customer);
         order.setCar(car);
         order.setStartDate(startDate);
