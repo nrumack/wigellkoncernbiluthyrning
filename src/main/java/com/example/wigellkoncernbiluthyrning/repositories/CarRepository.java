@@ -21,7 +21,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     Optional<Car> findByRegistrationNumber(String registrationNumber);
 
     @Query("SELECT c FROM Car c WHERE NOT EXISTS (" +
-    "SELECT o FROM Order o WHERE o.car = c AND o.active = true AND o.startDate <= :today AND o.returnDate >= :today" +
+    "SELECT o FROM Order o WHERE o.car = c AND o.cancelled = false AND o.startDate <= :today AND o.returnDate >= :today" +
     ")")
     List<Car> findAllAvailableCarsToday(@Param("today") LocalDate today);
 

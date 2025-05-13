@@ -21,5 +21,4 @@ public interface OrderService {
 
     void cancelOrder(Long id, Principal principal);
 
-    void updateOrderStatuses();
 }

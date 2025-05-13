@@ -57,17 +57,17 @@ class OrderRepositoryTest {
         Order order1 = new Order();
         order1.setReturnDate(today);
         order1.setCustomer(customer);
-        order1.setActive(true);
+        order1.setCancelled(false);
 
         Order order2 = new Order();
         order2.setReturnDate(tomorrow);
         order2.setCustomer(customer);
-        order2.setActive(true);
+        order2.setCancelled(false);
 
         Order order3 = new Order();
         order3.setReturnDate(tomorrow);
         order3.setCustomer(customer);
-        order3.setActive(false);
+        order3.setCancelled(true);
 
         when(orderRepository.findByReturnDateGreaterThanEqual(today)).thenReturn(List.of(order1, order2, order3));
 
@@ -81,7 +81,7 @@ class OrderRepositoryTest {
     }
 
     @Test
-    void pastOrders_ADMIN_ReturnAllOrders() {
+    void pastOrders_ADMIN_ReturnPastOrders() {
 
         mockPrincipal = () -> "testCredentials";
 
