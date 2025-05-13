@@ -81,7 +81,7 @@ class OrderRepositoryTest {
     }
 
     @Test
-    void pastOrders_ADMIN_ReturnAllOrders() {
+    void pastOrders_ADMIN_ReturnPastOrders() {
 
         mockPrincipal = () -> "testCredentials";
 
