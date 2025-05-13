@@ -23,13 +23,11 @@ public class CarServiceImpl implements CarService {
     private static final Logger CAR_LOGGER = LogManager.getLogger(CarServiceImpl.class);
     private final CarRepository carRepository;
     private final OrderRepository orderRepository;
-    private final OrderService orderService;
 
     @Autowired
     public CarServiceImpl(CarRepository carRepository, OrderRepository orderRepository, OrderService orderService) {
         this.carRepository = carRepository;
         this.orderRepository = orderRepository;
-        this.orderService = orderService;
     }
 
     @Override
@@ -76,6 +74,8 @@ public class CarServiceImpl implements CarService {
         CAR_LOGGER.info("Car with id:{} was removed from the database.", id);
 
         LocalDate today = LocalDate.now();
+
+        
         boolean isBooked = orderRepository.isCarBookedToday(car, today);
         if (isBooked) {
             throw new CarDeleteException("Cannot delete a car with id " + id + " because it is currently booked");

@@ -15,11 +15,9 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 public class CustomerController {
 
-    private final CustomerRepository customerRepository;
     private final CustomerService customerService;
 
     public CustomerController(CustomerRepository customerRepository, CustomerService customerService) {
-        this.customerRepository = customerRepository;
         this.customerService = customerService;
     }
 
