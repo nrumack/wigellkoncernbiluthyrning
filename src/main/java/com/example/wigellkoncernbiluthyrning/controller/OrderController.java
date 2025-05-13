@@ -25,8 +25,8 @@ public class OrderController {
 
     @PostMapping("/addorder")
     @ResponseBody
-    public ResponseEntity<String> addOrder(@RequestBody Order order) {
-        orderServiceImpl.addOrder(order);
+    public ResponseEntity<String> addOrder(@RequestBody Order order, Principal principal) {
+        orderServiceImpl.addOrder(order, principal);
         return ResponseEntity.status(HttpStatus.CREATED).body("Your order has been placed");
     }
 
