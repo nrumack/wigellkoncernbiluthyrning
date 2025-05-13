@@ -29,7 +29,7 @@ public class Order {
     private int totalCost;
 
     @Column
-    private boolean active;
+    private boolean cancelled;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
@@ -42,7 +42,7 @@ public class Order {
 
     public Order() {
         this.orderPlaced = LocalDate.now();
-        this.active = true;
+        this.cancelled = false;
     }
 
     public Long getId() {
@@ -101,11 +101,11 @@ public class Order {
         this.car = car;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isCancelled() {
+        return cancelled;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 }

@@ -55,8 +55,8 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new IncorrectFormException("Car does not exist"));
 
         if (orderRepository.isCarBookedDuringPeriod(car, order.getStartDate(), order.getReturnDate())) {
-        throw new IncorrectFormException("Car is already booked during this period");
-}
+            throw new IncorrectFormException("Car is already booked during this period");
+        }
         order.setCustomer(customer);
         order.setCar(car);
         orderCalculator.calculateTotalCost(order, carRepository.findCarById(order.getCar().getId()));
@@ -75,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
         boolean isAdmin = userName.equals("admin");
 
         for (Order order : currentOrders) {
-            if (order.isActive() && (isAdmin || order.getCustomer().getSocialSecurityNumber().equals(userName))) {
+            if (!order.isCancelled() && (isAdmin || order.getCustomer().getSocialSecurityNumber().equals(userName))) {
                 activeOrders.add(order);
             }
         }
@@ -141,20 +141,8 @@ public class OrderServiceImpl implements OrderService {
         if (!order.getCustomer().getSocialSecurityNumber().equals(loginName)) {
             throw new UnauthorisedUserException("You are not authorised to cancel this order");
         }
-        order.setActive(false);
+        order.setCancelled(true);
         orderRepository.save(order);
         ORDER_LOGGER.info("Order with id:{} has been cancelled", id);
-    }
-
-    @Transactional
-    public void updateOrderStatuses() {
-        LocalDate today = LocalDate.now();
-        List<Order> orders = orderRepository.findAll();
-        for (Order order : orders) {
-            if (order.isActive() && !order.getReturnDate().isAfter(today)) {
-                order.setActive(false);
-                orderRepository.save(order);
-            }
-        }
     }
 }
