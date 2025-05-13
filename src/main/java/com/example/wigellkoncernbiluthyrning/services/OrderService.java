@@ -9,7 +9,7 @@ import java.util.List;
 // Marc
 public interface OrderService {
 
-    void addOrder(Order order);
+    void addOrder(Order order, Principal principal);
 
     List<Order> activeOrders(LocalDate currentDate, Principal principal);
 

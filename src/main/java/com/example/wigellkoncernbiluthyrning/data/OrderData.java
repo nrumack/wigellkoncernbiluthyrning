@@ -114,7 +114,7 @@ public class OrderData implements CommandLineRunner {
         double cost = car.getPricePerDay() * days;
     
         Order order = new Order();
-        order.setOrderPlaced(LocalDate.of(2000,1,1));
+        order.setOrderPlaced(startDate);
         order.setCustomer(customer);
         order.setCar(car);
         order.setStartDate(startDate);
